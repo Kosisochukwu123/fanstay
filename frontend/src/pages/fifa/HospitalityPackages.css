@@ -1,0 +1,150 @@
+/* src/pages/fifa/HospitalityPackages.css */
+
+.hospitality-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Packages Grid */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.package-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.8rem;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s;
+}
+
+.package-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 48, 87, 0.15);
+}
+
+.package-card.popular {
+  border: 2px solid #ffd700;
+  transform: scale(1.02);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffd700;
+  color: #003057;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.package-card h2 {
+  font-size: 1.5rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.package-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffd700;
+  margin: 0.5rem 0;
+}
+
+.package-description {
+  color: #4a627a;
+  margin-bottom: 1rem;
+}
+
+.package-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.package-features li {
+  padding: 0.4rem 0;
+  color: #4a627a;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.package-features li i {
+  color: #28a745;
+}
+
+.book-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.book-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+/* Benefits Grid */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.benefit {
+  text-align: center;
+}
+
+.benefit i {
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.benefit h4 {
+  color: #003057;
+  margin-bottom: 0.25rem;
+}
+
+.benefit p {
+  color: #4a627a;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .hospitality-container {
+    padding: 1rem;
+  }
+  
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .package-card.popular {
+    transform: scale(1);
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}

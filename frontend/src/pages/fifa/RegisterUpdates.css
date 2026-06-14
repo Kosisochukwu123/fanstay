@@ -1,0 +1,202 @@
+/* src/pages/fifa/RegisterUpdates.css */
+
+.register-updates-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #4a627a;
+}
+
+/* Benefits Section */
+.benefits-section {
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.benefits-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.benefit-item {
+  text-align: center;
+  padding: 1rem;
+}
+
+.benefit-item i {
+  font-size: 1.8rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-item span {
+  display: block;
+  color: #4a627a;
+  font-size: 0.85rem;
+}
+
+/* Form Section */
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #003057;
+  font-size: 0.85rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cce0f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.checkbox-group input {
+  width: auto;
+  cursor: pointer;
+}
+
+/* Submit Button */
+.subscribe-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.subscribe-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 48, 87, 0.2);
+}
+
+/* Success Message */
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.success-message i {
+  margin-right: 0.5rem;
+}
+
+/* Info Text */
+.info-text {
+  font-size: 0.75rem;
+  color: #88aacc;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .register-updates-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .form-section {
+    padding: 1.5rem;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}

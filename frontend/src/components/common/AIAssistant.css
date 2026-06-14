@@ -1,0 +1,131 @@
+.ai-assistant {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+}
+
+.ai-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: background-color var(--transition-fast);
+}
+
+.ai-toggle:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.ai-window {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 340px;
+  height: 440px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ai-header {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.ai-header button {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.ai-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.ai-message {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+}
+
+.ai-message.bot {
+  background-color: var(--color-bg-secondary);
+  align-self: flex-start;
+}
+
+.ai-message.user {
+  background-color: var(--color-primary);
+  color: #fff;
+  align-self: flex-end;
+}
+
+.ai-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.ai-suggestion-chip {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: var(--fs-xs);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast);
+}
+
+.ai-suggestion-chip:hover {
+  border-color: var(--color-primary);
+}
+
+.ai-input-row {
+  display: flex;
+  border-top: 1px solid var(--color-border);
+}
+
+.ai-input-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.ai-input-row button {
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 480px) {
+  .ai-window {
+    width: 90vw;
+  }
+}

@@ -1,0 +1,257 @@
+/* src/pages/fifa/TicketCategories.css */
+
+.categories-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #4a627a;
+}
+
+/* Stadium Map Placeholder */
+.stadium-map {
+  background: linear-gradient(135deg, #e8f0f8, #d4e4f0);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.stadium-map::before {
+  content: '🏟️';
+  font-size: 4rem;
+  opacity: 0.3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.map-placeholder p {
+  position: relative;
+  z-index: 1;
+  color: #003057;
+  font-weight: 500;
+}
+
+/* Categories Grid */
+.categories-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.category-row {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.category-row:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 48, 87, 0.08);
+}
+
+.category-name {
+  min-width: 120px;
+}
+
+.category-name h3 {
+  color: #003057;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.category-name .view-badge {
+  font-size: 0.7rem;
+  color: #88aacc;
+}
+
+.category-price {
+  min-width: 100px;
+}
+
+.category-price .price {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+.category-price .price-note {
+  font-size: 0.7rem;
+  color: #88aacc;
+}
+
+.category-features {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.feature-tag {
+  background: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: #4a627a;
+}
+
+.select-category-btn {
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.select-category-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+/* Comparison Table */
+.comparison-section {
+  margin: 2rem 0;
+}
+
+.comparison-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.comparison-table {
+  overflow-x: auto;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.comparison-table th {
+  background: #003057;
+  color: white;
+  font-weight: 600;
+}
+
+.comparison-table td {
+  color: #4a627a;
+}
+
+.comparison-table tr:hover td {
+  background: #f8fafc;
+}
+
+.check-icon {
+  color: #28a745;
+  font-size: 1rem;
+}
+
+/* Info Section */
+.info-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  border-left: 4px solid #ffd700;
+}
+
+.info-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section ul {
+  padding-left: 1.5rem;
+}
+
+.info-section li {
+  color: #4a627a;
+  margin: 0.5rem 0;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .categories-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .category-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .category-features {
+    justify-content: center;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}

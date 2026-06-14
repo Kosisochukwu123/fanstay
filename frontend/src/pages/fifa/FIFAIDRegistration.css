@@ -1,0 +1,263 @@
+/* src/pages/fifa/FIFAIDRegistration.css */
+
+.registration-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #4a627a;
+}
+
+/* Two Column Layout */
+.registration-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Info Sidebar */
+.registration-info {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border-left: 4px solid #ffd700;
+  height: fit-content;
+}
+
+.registration-info h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.registration-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.registration-info li {
+  padding: 0.6rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4a627a;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #e0e8f0;
+}
+
+.registration-info li:last-child {
+  border-bottom: none;
+}
+
+.registration-info li i {
+  color: #28a745;
+  width: 20px;
+  font-size: 1rem;
+}
+
+/* Registration Form */
+.registration-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #003057;
+  font-size: 0.85rem;
+}
+
+.form-group label .required {
+  color: #dc3545;
+  margin-left: 0.25rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cce0f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.form-group input.error {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Checkbox */
+.form-group.checkbox {
+  margin-top: 1rem;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.form-group.checkbox input {
+  width: auto;
+  cursor: pointer;
+}
+
+.form-group.checkbox a {
+  color: #0066b3;
+  text-decoration: none;
+}
+
+.form-group.checkbox a:hover {
+  text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 48, 87, 0.2);
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Login Prompt */
+.login-prompt {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.login-prompt p {
+  color: #4a627a;
+}
+
+.login-prompt button {
+  background: none;
+  border: none;
+  color: #0066b3;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.login-prompt button:hover {
+  color: #003057;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .registration-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .registration-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .registration-info {
+    order: 2;
+  }
+  
+  .registration-form {
+    order: 1;
+  }
+}

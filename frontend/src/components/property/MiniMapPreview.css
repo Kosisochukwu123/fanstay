@@ -1,0 +1,89 @@
+.mini-map-preview {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  height: 200px;
+}
+
+.mini-map-preview .property-map-wrap,
+.mini-map-preview .leaflet-container {
+  height: 200px !important;
+  pointer-events: none;
+}
+
+.mini-map-overlay-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 5;
+}
+
+.mini-map-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  font-size: 1rem;
+}
+
+.mini-map-icon-btn:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.mini-map-location-note {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+/* Expanded modal */
+.mini-map-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-lg);
+}
+
+.mini-map-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.mini-map-modal-content .property-map-wrap,
+.mini-map-modal-content .leaflet-container {
+  height: 70vh !important;
+}
+
+.mini-map-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1.2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}

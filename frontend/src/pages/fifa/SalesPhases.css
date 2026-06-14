@@ -1,0 +1,263 @@
+/* src/pages/fifa/SalesPhases.css */
+
+.sales-phases-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #4a627a;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #ffd700, #003057);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background: #003057;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  z-index: 2;
+  border: 3px solid #ffd700;
+}
+
+.timeline-item.completed .timeline-marker {
+  background: #28a745;
+}
+
+.timeline-item.current .timeline-marker {
+  background: #ffd700;
+  color: #003057;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
+.timeline-content {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.timeline-content:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-content h3 {
+  color: #003057;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.phase-dates {
+  color: #ffd700;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.phase-description {
+  color: #4a627a;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-badge.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.current {
+  background: #ffd700;
+  color: #003057;
+}
+
+.status-badge.upcoming {
+  background: #cce5ff;
+  color: #004085;
+}
+
+/* Important Dates Section */
+.important-dates {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+}
+
+.important-dates h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.date-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.date-card .date {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 0.25rem;
+}
+
+.date-card .event {
+  color: #003057;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Info Section */
+.info-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  border-left: 4px solid #ffd700;
+}
+
+.info-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section ul {
+  padding-left: 1.5rem;
+}
+
+.info-section li {
+  color: #4a627a;
+  margin: 0.5rem 0;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sales-phases-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .timeline {
+    padding-left: 1rem;
+  }
+  
+  .timeline::before {
+    left: 10px;
+  }
+  
+  .timeline-marker {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+    left: -1.5rem;
+  }
+  
+  .timeline-item {
+    padding-left: 1.5rem;
+  }
+  
+  .dates-grid {
+    grid-template-columns: 1fr;
+  }
+}

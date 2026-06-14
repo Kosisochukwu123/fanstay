@@ -1,0 +1,215 @@
+/* src/pages/fifa/ParkingPasses.css */
+
+.parking-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #4a627a;
+}
+
+/* Stadium Filter */
+.stadium-filter {
+  margin-bottom: 2rem;
+}
+
+.filter-select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 14px;
+  border: 1px solid #cce0f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #003057;
+  background: white;
+  cursor: pointer;
+}
+
+/* Parking Grid */
+.parking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.parking-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s;
+}
+
+.parking-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 48, 87, 0.12);
+}
+
+.stadium-icon {
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.parking-card h3 {
+  font-size: 1.2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.location {
+  color: #4a627a;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location i {
+  color: #ffd700;
+}
+
+.parking-details {
+  border-top: 1px solid #e9ecef;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.detail-label {
+  color: #4a627a;
+}
+
+.detail-value {
+  color: #003057;
+  font-weight: 600;
+}
+
+.availability {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.availability.high {
+  background: #d4edda;
+  color: #155724;
+}
+
+.availability.medium {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.availability.low {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  margin: 0.75rem 0;
+}
+
+.reserve-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reserve-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+/* Info Section */
+.info-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  border-left: 4px solid #ffd700;
+}
+
+.info-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section ul {
+  padding-left: 1.5rem;
+}
+
+.info-section li {
+  color: #4a627a;
+  margin: 0.5rem 0;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .parking-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .parking-grid {
+    grid-template-columns: 1fr;
+  }
+}

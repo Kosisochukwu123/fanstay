@@ -1,0 +1,1372 @@
+/* src/pages/fifa/fifa.css */
+
+/* ============================================
+   GLOBAL FIFA PAGE STYLES
+   ============================================ */
+
+.fifa-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ============================================
+   PAGE HEADERS
+   ============================================ */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: #4a627a;
+}
+
+.section-title-small {
+  font-size: 1.5rem;
+  color: #003057;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #ffd700;
+  padding-left: 1rem;
+  font-weight: 600;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.fifa-hero {
+  background: linear-gradient(135deg, #001a33 0%, #003057 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fifa-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='white' d='M50,0 L61.8,38.2 L100,38.2 L69.1,61.8 L80.9,100 L50,75.5 L19.1,100 L30.9,61.8 L0,38.2 L38.2,38.2 Z'/%3E%3C/svg%3E");
+  background-size: 60px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff, #ffd700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #cce5ff;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: inherit;
+}
+
+.hero-btn.primary {
+  background: #ffd700;
+  color: #003057;
+}
+
+.hero-btn.primary:hover {
+  background: #ffed4a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.hero-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #cce5ff;
+}
+
+/* ============================================
+   CARDS & GRIDS
+   ============================================ */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.fifa-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 51, 102, 0.1);
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fifa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 48, 87, 0.15);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #003057;
+  margin-bottom: 0.75rem;
+}
+
+.card-description {
+  color: #4a627a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.card-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+  flex: 1;
+}
+
+.card-features li {
+  padding: 0.4rem 0;
+  color: #4a627a;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-features li i {
+  color: #28a745;
+  font-size: 0.8rem;
+  width: 18px;
+}
+
+.fifa-card-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 1rem;
+  font-family: inherit;
+}
+
+.fifa-card-btn-default {
+  background: #003057;
+  color: white;
+}
+
+.fifa-card-btn-default:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   MATCHES LIST
+   ============================================ */
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.match-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  border: 1px solid #e9ecef;
+}
+
+.match-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 48, 87, 0.1);
+}
+
+.match-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #003057;
+  font-weight: 600;
+}
+
+.match-info p {
+  font-size: 0.85rem;
+  color: #4a627a;
+  margin: 0.25rem 0;
+}
+
+.match-info i {
+  margin-right: 0.5rem;
+  color: #ffd700;
+  width: 16px;
+}
+
+.match-btn {
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.match-btn.active:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+.match-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   HOST CITIES
+   ============================================ */
+
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.city-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.city-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 48, 87, 0.1);
+}
+
+.city-card h3 {
+  font-size: 1.2rem;
+  color: #003057;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.city-card p {
+  color: #4a627a;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.city-card i {
+  margin-right: 0.5rem;
+  color: #ffd700;
+  width: 20px;
+}
+
+/* ============================================
+   SERVICES GRID
+   ============================================ */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.service-item {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #e9ecef;
+}
+
+.service-item i {
+  font-size: 1.8rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.service-item span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #003057;
+}
+
+.service-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 48, 87, 0.1);
+  border-color: #ffd700;
+}
+
+/* ============================================
+   RESOURCES ROW
+   ============================================ */
+
+.resources-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.resource-card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #e9ecef;
+}
+
+.resource-card i {
+  font-size: 2rem;
+  color: #ffd700;
+}
+
+.resource-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #003057;
+}
+
+.resource-card p {
+  font-size: 0.8rem;
+  color: #4a627a;
+}
+
+.resource-card:hover {
+  transform: translateX(5px);
+  border-color: #ffd700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   TICKET CATEGORIES
+   ============================================ */
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.category-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 48, 87, 0.1);
+}
+
+.category-card h3 {
+  font-size: 1.3rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.category-card .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin: 0.5rem 0;
+}
+
+.category-card p {
+  color: #4a627a;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   MATCHES TABLE (TICKETS PORTAL)
+   ============================================ */
+
+.matches-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.match-row {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.match-row:hover {
+  box-shadow: 0 4px 12px rgba(0, 48, 87, 0.08);
+}
+
+.match-info h3 {
+  font-size: 1rem;
+  color: #003057;
+  margin-bottom: 0.25rem;
+}
+
+.match-info p {
+  font-size: 0.8rem;
+  color: #4a627a;
+  margin: 0.2rem 0;
+}
+
+.price-range {
+  font-weight: 600;
+  color: #ffd700;
+  margin-top: 0.25rem;
+}
+
+.purchase-btn {
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.purchase-btn.active:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+.purchase-btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   HOSPITALITY PACKAGES
+   ============================================ */
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.package-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.8rem;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s;
+}
+
+.package-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 48, 87, 0.15);
+}
+
+.package-card.popular {
+  border: 2px solid #ffd700;
+  transform: scale(1.02);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffd700;
+  color: #003057;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.package-card h2 {
+  font-size: 1.5rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.package-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffd700;
+  margin: 0.5rem 0;
+}
+
+.package-description {
+  color: #4a627a;
+  margin-bottom: 1rem;
+}
+
+.package-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.package-features li {
+  padding: 0.4rem 0;
+  color: #4a627a;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.package-features li i {
+  color: #28a745;
+}
+
+.book-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.book-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   BENEFITS GRID
+   ============================================ */
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.benefit {
+  text-align: center;
+}
+
+.benefit i {
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.benefit h4 {
+  color: #003057;
+  margin-bottom: 0.25rem;
+}
+
+.benefit p {
+  color: #4a627a;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   REGISTRATION FORM
+   ============================================ */
+
+.registration-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.registration-info {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border-left: 4px solid #ffd700;
+}
+
+.registration-info h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+}
+
+.registration-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.registration-info li {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a627a;
+}
+
+.registration-info li i {
+  color: #28a745;
+  width: 20px;
+}
+
+.registration-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #003057;
+  font-size: 0.85rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cce0f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+}
+
+.form-group.checkbox {
+  margin-top: 1rem;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.form-group.checkbox input {
+  width: auto;
+}
+
+.form-group.checkbox a {
+  color: #0066b3;
+  text-decoration: none;
+}
+
+.form-group.checkbox a:hover {
+  text-decoration: underline;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submit-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+.login-prompt {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.login-prompt button {
+  background: none;
+  border: none;
+  color: #0066b3;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ============================================
+   RESALE MARKETPLACE
+   ============================================ */
+
+.marketplace-filters {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid #003057;
+  color: #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #003057;
+  color: white;
+}
+
+.listings-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.listing-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.listing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 48, 87, 0.1);
+}
+
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.listing-header h3 {
+  color: #003057;
+  font-size: 1rem;
+}
+
+.seller-badge {
+  background: #28a745;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+}
+
+.listing-card p {
+  color: #4a627a;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+.listing-card p i {
+  margin-right: 0.5rem;
+  color: #ffd700;
+  width: 16px;
+}
+
+.listing-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin: 0.5rem 0;
+}
+
+.buy-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.buy-btn:hover {
+  background: #0066b3;
+}
+
+/* ============================================
+   TICKET TRANSFER
+   ============================================ */
+
+.transfer-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my-tickets {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.my-tickets h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+}
+
+.ticket-item {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ticket-item strong {
+  color: #003057;
+}
+
+.ticket-item p {
+  color: #4a627a;
+  font-size: 0.8rem;
+  margin: 0.2rem 0;
+}
+
+.ticket-item small {
+  color: #88aacc;
+  font-size: 0.7rem;
+}
+
+.select-btn {
+  background: #ffd700;
+  color: #003057;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.transfer-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.transfer-form h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+}
+
+.transfer-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.transfer-btn:hover {
+  background: #0066b3;
+}
+
+/* ============================================
+   INFO SECTION
+   ============================================ */
+
+.info-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  border-left: 4px solid #ffd700;
+}
+
+.info-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section h3 i {
+  color: #ffd700;
+}
+
+.info-section ul,
+.info-section ol {
+  padding-left: 1.5rem;
+}
+
+.info-section li {
+  color: #4a627a;
+  margin: 0.5rem 0;
+}
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+
+.faq-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #ffd700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question h3 {
+  color: #003057;
+  font-size: 1rem;
+}
+
+.faq-question i {
+  color: #ffd700;
+  transition: transform 0.2s;
+}
+
+.faq-answer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+  color: #4a627a;
+  line-height: 1.5;
+}
+
+.faq-contact {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.faq-contact a {
+  color: #0066b3;
+  text-decoration: none;
+}
+
+/* ============================================
+   EVENT DETAIL PAGE
+   ============================================ */
+
+.event-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.event-info-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.event-info-card p {
+  margin: 1rem 0;
+  color: #4a627a;
+}
+
+.event-info-card i {
+  margin-right: 0.5rem;
+  color: #ffd700;
+  width: 24px;
+}
+
+.event-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   ALL EVENTS PAGE
+   ============================================ */
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event-list-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s;
+}
+
+.event-list-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.event-date-badge {
+  background: #003057;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 100px;
+}
+
+.event-details {
+  flex: 1;
+}
+
+.event-details h3 {
+  color: #003057;
+  margin-bottom: 0.25rem;
+}
+
+.event-details p {
+  color: #4a627a;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   BACK BUTTON
+   ============================================ */
+
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 2rem;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .page-content {
+    padding: 1.5rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-stats {
+    gap: 1.5rem;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .cards-grid,
+  .packages-grid,
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .registration-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .transfer-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .cities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .resources-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .marketplace-filters {
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .match-card,
+  .match-row,
+  .event-list-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .match-info {
+    text-align: center;
+  }
+  
+  .event-date-badge {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .hero-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .stats {
+    gap: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  .listing-card {
+    padding: 1rem;
+  }
+  
+  .package-card.popular {
+    transform: scale(1);
+  }
+  
+  .ticket-item {
+    flex-direction: column;
+    text-align: center;
+  }
+}

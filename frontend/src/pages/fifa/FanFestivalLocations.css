@@ -1,0 +1,204 @@
+/* src/pages/fifa/FanFestivalLocations.css */
+
+.fanfestival-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #ffd700;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #003057;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #4a627a;
+}
+
+/* Map Section */
+.map-section {
+  background: linear-gradient(135deg, #e8f0f8, #d4e4f0);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-placeholder {
+  text-align: center;
+}
+
+.map-placeholder i {
+  font-size: 4rem;
+  color: #003057;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.map-placeholder p {
+  color: #003057;
+  font-weight: 500;
+}
+
+/* Locations Grid */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.location-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 48, 87, 0.12);
+}
+
+.location-image {
+  height: 160px;
+  background: linear-gradient(135deg, #003057, #0066b3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+}
+
+.location-content {
+  padding: 1.25rem;
+}
+
+.location-content h3 {
+  color: #003057;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.location-address,
+.location-venue,
+.location-dates {
+  color: #4a627a;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-address i,
+.location-venue i,
+.location-dates i {
+  color: #ffd700;
+  width: 20px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.feature-tag {
+  background: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: #003057;
+}
+
+.directions-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.directions-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+/* Info Section */
+.info-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  border-left: 4px solid #ffd700;
+}
+
+.info-section h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section ul {
+  padding-left: 1.5rem;
+}
+
+.info-section li {
+  color: #4a627a;
+  margin: 0.5rem 0;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fanfestival-container {
+    padding: 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+}

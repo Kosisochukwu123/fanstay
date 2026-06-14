@@ -1,0 +1,221 @@
+/* src/pages/fifa/EventDetail.css */
+
+.event-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Hero Section */
+.event-hero {
+  background: linear-gradient(135deg, #001a33, #003057);
+  border-radius: 24px;
+  padding: 2rem;
+  color: white;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-hero::before {
+  content: '🏆';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-size: 8rem;
+  opacity: 0.1;
+}
+
+.event-hero h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.event-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.event-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.event-meta i {
+  color: #ffd700;
+}
+
+/* Content Grid */
+.event-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Main Content */
+.event-description {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.event-description h2 {
+  color: #003057;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.event-description p {
+  color: #4a627a;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.event-details-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.event-details-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  gap: 1rem;
+}
+
+.event-details-list li strong {
+  width: 120px;
+  color: #003057;
+}
+
+.event-details-list li span {
+  color: #4a627a;
+}
+
+/* Sidebar */
+.event-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ticket-card,
+.venue-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.ticket-card h3,
+.venue-card h3 {
+  color: #003057;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-range {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  margin: 1rem 0;
+}
+
+.buy-ticket-btn {
+  width: 100%;
+  background: #003057;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buy-ticket-btn:hover {
+  background: #0066b3;
+  transform: translateY(-2px);
+}
+
+.venue-address {
+  color: #4a627a;
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+.get-directions {
+  width: 100%;
+  background: transparent;
+  color: #0066b3;
+  border: 2px solid #0066b3;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.get-directions:hover {
+  background: #0066b3;
+  color: white;
+}
+
+/* Back Button */
+.back-btn {
+  background: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #003057;
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .event-detail-container {
+    padding: 1rem;
+  }
+  
+  .event-hero h1 {
+    font-size: 1.3rem;
+  }
+  
+  .event-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .event-details-list li {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .event-details-list li strong {
+    width: auto;
+  }
+}

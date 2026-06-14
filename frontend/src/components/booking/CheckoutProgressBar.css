@@ -1,0 +1,19 @@
+.checkout-progress-bar {
+  display: flex;
+  gap: 6px;
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.checkout-progress-segment {
+  flex: 1;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border);
+  transition: background-color var(--transition-fast);
+}
+
+.checkout-progress-segment.filled {
+  background-color: var(--color-text);
+}

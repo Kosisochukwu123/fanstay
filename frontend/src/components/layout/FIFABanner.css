@@ -1,0 +1,243 @@
+/* src/components/layout/FIFABanner.css */
+
+.fifa-banner-container {
+  background: linear-gradient(135deg, #001a33 0%, #002244 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  width: 100%;
+}
+
+/* Top Utility Bar */
+.top-utility-bar {
+  background: #000d1a;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #003366;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.utility-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.utility-link {
+  color: #ffd700;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.utility-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+  transform: translateY(-1px);
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 215, 0, 0.15);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.language-selector:hover {
+  background: rgba(255, 215, 0, 0.25);
+}
+
+/* Main Logo Banner */
+.main-logo-banner {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 2px solid #ffd700;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fifa-logo-link {
+  text-decoration: none;
+}
+
+.fifa-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1rem;
+}
+
+.fifa-letter {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.fifa-logo-link:hover .fifa-letter {
+  transform: scale(1.05);
+}
+
+.fifa-trademark {
+  font-size: 1rem;
+  color: #ffd700;
+  margin-left: 0.25rem;
+}
+
+.logo-tagline {
+  font-size: 0.7rem;
+  color: #88aacc;
+  letter-spacing: 2px;
+}
+
+.worldcup-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 215, 0, 0.15);
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  border: 1px solid #ffd700;
+}
+
+.worldcup-badge-header i {
+  font-size: 1.5rem;
+  color: #ffd700;
+}
+
+.worldcup-badge-header span {
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Main Navigation */
+.main-navigation {
+  background: #001a33;
+  padding: 0.75rem 2rem;
+  border-top: 1px solid #003366;
+  overflow-x: auto;
+}
+
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  min-width: min-content;
+}
+
+.nav-item {
+  color: #cce5ff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-item i {
+  font-size: 0.9rem;
+}
+
+.nav-item:hover {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 8px;
+}
+
+.nav-item.active {
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+}
+
+.more-btn {
+  background: none;
+  font-family: inherit;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-utility-bar,
+  .main-logo-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav-container {
+    gap: 0.75rem;
+  }
+  
+  .nav-item {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .fifa-letter {
+    font-size: 2rem;
+  }
+  
+  .worldcup-badge-header {
+    padding: 0.3rem 1rem;
+  }
+  
+  .worldcup-badge-header i {
+    font-size: 1rem;
+  }
+  
+  .worldcup-badge-header span {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .utility-links {
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  
+  .utility-link {
+    font-size: 0.7rem;
+  }
+  
+  .nav-container {
+    gap: 0.5rem;
+  }
+  
+  .nav-item {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.4rem;
+  }
+}

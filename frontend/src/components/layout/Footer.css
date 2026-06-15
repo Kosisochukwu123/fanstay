@@ -1,7 +1,11 @@
+/* src/components/layout/Footer.css - Clean version */
+
 .footer {
   background-color: var(--color-bg-secondary);
   border-top: 1px solid var(--color-border);
   margin-top: var(--space-2xl);
+  padding-top: 2rem;
+  width: 100%;
 }
 
 .footer-inner {
@@ -9,6 +13,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
   padding: var(--space-2xl) var(--space-lg);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .footer-col {
@@ -26,7 +32,9 @@
 .footer-col a {
   color: var(--color-text-muted);
   font-size: var(--fs-sm);
-  transition: color var(--transition-fast);
+  transition: var(--transition-fast);
+  text-decoration: none;
+  width: fit-content;
 }
 
 .footer-col a:hover {
@@ -47,6 +55,8 @@
   padding: var(--space-md) var(--space-lg);
   font-size: var(--fs-xs);
   color: var(--color-text-muted);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .footer-bottom-left {
@@ -69,6 +79,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-lg);
+  flex-wrap: wrap;
 }
 
 .footer-lang-currency {
@@ -85,7 +96,14 @@
   font-weight: 600;
   font-size: var(--fs-xs);
   color: var(--color-text);
-  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.footer-lang-btn:hover {
+  color: var(--color-primary);
 }
 
 .footer-lang-dropdown {
@@ -100,6 +118,7 @@
   min-width: 80px;
   overflow: hidden;
   z-index: 200;
+  padding: 0;
 }
 
 .footer-lang-dropdown button {
@@ -109,6 +128,9 @@
   text-align: left;
   color: var(--color-text);
   font-size: var(--fs-xs);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .footer-lang-dropdown button:hover {
@@ -124,6 +146,11 @@
   font-size: var(--fs-xs);
   text-decoration: underline;
   cursor: pointer;
+  padding: 0;
+}
+
+.footer-currency-select:hover {
+  color: var(--color-primary);
 }
 
 .footer-socials {
@@ -133,31 +160,63 @@
 }
 
 .footer-socials a {
-  color: var(--color-text);
+  color: var(--color-text-muted);
+  transition: var(--transition-fast);
 }
 
 .footer-socials a:hover {
   color: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
   .footer-inner {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
   }
 }
 
 @media (max-width: 600px) {
   .footer-inner {
     grid-template-columns: 1fr;
+    gap: var(--space-md);
+    padding: var(--space-lg);
   }
-
+  
+  .footer-col a {
+    width: 100%;
+  }
+  
   .footer-bottom-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-md);
   }
-
+  
   .footer-bottom-right {
     width: 100%;
     justify-content: space-between;
+  }
+  
+  .footer-lang-dropdown {
+    bottom: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-bottom-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  
+  .footer-lang-currency {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .footer-socials {
+    width: 100%;
+    justify-content: center;
   }
 }

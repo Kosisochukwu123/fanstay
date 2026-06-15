@@ -1,10 +1,32 @@
+// src/components/layout/Footer.jsx - Simplified version matching your original structure
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiFacebook, FiTwitter, FiInstagram, FiGlobe } from 'react-icons/fi';
+import { 
+  FiFacebook, 
+  FiTwitter, 
+  FiInstagram, 
+  FiGlobe, 
+  FiYoutube, 
+  FiLinkedin, 
+  FiMapPin, 
+  FiHeart, 
+  FiShield, 
+  FiHeadphones, 
+  FiTrendingUp, 
+  FiUsers, 
+  FiHome, 
+  FiCalendar, 
+  FiAward, 
+  FiBriefcase, 
+  FiGift, 
+  FiFileText, 
+  FiLock
+} from 'react-icons/fi';
+import { FaTiktok } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 import './Footer.css';
 
-const CURRENCIES = ['USD', 'EUR', 'GBP'];
+const CURRENCIES = ['USD', 'EUR', 'GBP', 'CAD', 'MXN'];
 
 const Footer = () => {
   const { lang, changeLang, available } = useLanguage();
@@ -13,7 +35,9 @@ const Footer = () => {
 
   return (
     <footer className="footer">
+      {/* Main Footer Links - Keeping your original structure */}
       <div className="container footer-inner">
+        {/* Column 1 - Support */}
         <div className="footer-col">
           <h4>Support</h4>
           <Link to="/faq">Help Center</Link>
@@ -26,6 +50,7 @@ const Footer = () => {
           <Link to="/contact">Report a neighborhood concern</Link>
         </div>
 
+        {/* Column 2 - Hosting */}
         <div className="footer-col">
           <h4>Hosting</h4>
           <Link to="/register">List your property</Link>
@@ -39,6 +64,7 @@ const Footer = () => {
           <Link to="/contact">Refer a host</Link>
         </div>
 
+        {/* Column 3 - FanStay */}
         <div className="footer-col">
           <h4>FanStay</h4>
           <Link to="/explore?event=World+Cup">2026 World Cup stays</Link>
@@ -51,6 +77,7 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Bottom Bar */}
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <div className="footer-bottom-left">
@@ -69,7 +96,9 @@ const Footer = () => {
                 <ul className="footer-lang-dropdown">
                   {available.map((l) => (
                     <li key={l}>
-                      <button onClick={() => { changeLang(l); setLangOpen(false); }}>{l.toUpperCase()}</button>
+                      <button onClick={() => { changeLang(l); setLangOpen(false); }}>
+                        {l.toUpperCase()}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -80,7 +109,9 @@ const Footer = () => {
                 onChange={(e) => setCurrency(e.target.value)}
                 aria-label="Currency"
               >
-                {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                {CURRENCIES.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
               </select>
             </div>
 
@@ -88,6 +119,9 @@ const Footer = () => {
               <a href="#" aria-label="Facebook"><FiFacebook /></a>
               <a href="#" aria-label="Twitter"><FiTwitter /></a>
               <a href="#" aria-label="Instagram"><FiInstagram /></a>
+              <a href="#" aria-label="YouTube"><FiYoutube /></a>
+              <a href="#" aria-label="LinkedIn"><FiLinkedin /></a>
+              <a href="#" aria-label="TikTok"><FaTiktok /></a>
             </div>
           </div>
         </div>

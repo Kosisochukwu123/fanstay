@@ -31,7 +31,7 @@ services:
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
-      - key: COINBASE_COMMERCE_API_KEY
+      # - key: COINBASE_COMMERCE_API_KEY
         sync: false
       - key: COINBASE_COMMERCE_WEBHOOK_SECRET
         sync: false

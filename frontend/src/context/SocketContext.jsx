@@ -22,6 +22,7 @@ export const SocketProvider = ({ children }) => {
     }
 
     const token = localStorage.getItem('fanstay_token');
+    console.log('VITE_SOCKET_URL =', import.meta.env.VITE_SOCKET_URL);
     const socket = io(import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000', {
       auth: { token },
       withCredentials: true,

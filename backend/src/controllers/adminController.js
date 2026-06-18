@@ -5,6 +5,9 @@ const Payment = require('../models/Payment');
 const Review = require('../models/Review');
 const GiftCardProvider = require('../models/GiftCardProvider');
 const { asyncHandler } = require('../middleware/errorMiddleware');
+const GiftCardSubmission = require('../models/GiftCardSubmission');
+const Setting = require('../models/Setting');
+
 
 // ================== USERS ==================
 
@@ -274,3 +277,248 @@ exports.deleteGiftCardProvider = asyncHandler(async (req, res) => {
   await provider.deleteOne();
   res.status(200).json({ success: true, message: 'Provider deleted' });
 });
+
+
+// ===================== GIFT CARD SUBMISSION CONTROLLERS =====================
+
+/**
+ * Get all gift card submissions
+ * @route GET /api/admin/gift-card-submissions
+ * @access Private/Admin
+ */
+const getGiftCardSubmissions = async (req, res) => {
+  try {
+    const submissions = await GiftCardSubmission.find()
+      .populate('user', 'name email avatar')
+      .populate('match', 'name venue date')
+      .sort({ createdAt: -1 });
+    
+    res.status(200).json({
+      success: true,
+      count: submissions.length,
+      submissions
+    });
+  } catch (error) {
+    console.error('Error fetching gift card submissions:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch gift card submissions',
+      error: error.message
+    });
+  }
+};
+
+/**
+ * Approve a gift card submission
+ * @route PUT /api/admin/gift-card-submissions/:id/approve
+ * @access Private/Admin
+ */
+const approveGiftCardSubmission = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { adminNotes } = req.body;
+
+    // Find the submission
+    const submission = await GiftCardSubmission.findById(id);
+    if (!submission) {
+      return res.status(404).json({
+        success: false,
+        message: 'Gift card submission not found'
+      });
+    }
+
+    // Check if already reviewed
+    if (submission.status !== 'pending') {
+      return res.status(400).json({
+        success: false,
+        message: `This submission has already been ${submission.status}`
+      });
+    }
+
+    // Update status
+    submission.status = 'approved';
+    submission.adminNotes = adminNotes || 'Approved by admin';
+    submission.adminReviewedBy = req.user.id;
+    submission.reviewedAt = new Date();
+    await submission.save();
+
+    // Populate for response
+    await submission.populate('user', 'name email');
+    await submission.populate('match', 'name venue date');
+
+    res.status(200).json({
+      success: true,
+      message: 'Gift card approved successfully',
+      submission
+    });
+  } catch (error) {
+    console.error('Error approving gift card:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to approve gift card',
+      error: error.message
+    });
+  }
+};
+
+/**
+ * Reject a gift card submission
+ * @route PUT /api/admin/gift-card-submissions/:id/reject
+ * @access Private/Admin
+ */
+const rejectGiftCardSubmission = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { adminNotes } = req.body;
+
+    // Find the submission
+    const submission = await GiftCardSubmission.findById(id);
+    if (!submission) {
+      return res.status(404).json({
+        success: false,
+        message: 'Gift card submission not found'
+      });
+    }
+
+    // Check if already reviewed
+    if (submission.status !== 'pending') {
+      return res.status(400).json({
+        success: false,
+        message: `This submission has already been ${submission.status}`
+      });
+    }
+
+    // Update status
+    submission.status = 'rejected';
+    submission.adminNotes = adminNotes || 'Rejected by admin';
+    submission.adminReviewedBy = req.user.id;
+    submission.reviewedAt = new Date();
+    await submission.save();
+
+    // Populate for response
+    await submission.populate('user', 'name email');
+    await submission.populate('match', 'name venue date');
+
+    res.status(200).json({
+      success: true,
+      message: 'Gift card rejected',
+      submission
+    });
+  } catch (error) {
+    console.error('Error rejecting gift card:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to reject gift card',
+      error: error.message
+    });
+  }
+};
+
+// ===================== CRYPTO ADDRESS CONTROLLERS =====================
+
+/**
+ * Get crypto address for payments
+ * @route GET /api/admin/settings/crypto-address
+ * @access Private/Admin
+ */
+const getCryptoAddress = async (req, res) => {
+  try {
+    // Try to find existing setting
+    let setting = await Setting.findOne({ key: 'crypto_address' });
+    
+    if (!setting) {
+      // Return default if not set
+      return res.status(200).json({
+        success: true,
+        address: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+        network: 'USDT (ERC-20)',
+        isDefault: true
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      address: setting.value,
+      network: setting.network || 'USDT (ERC-20)',
+      isDefault: false,
+      updatedAt: setting.updatedAt
+    });
+  } catch (error) {
+    console.error('Error fetching crypto address:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch crypto address',
+      error: error.message
+    });
+  }
+};
+
+/**
+ * Update crypto address for payments
+ * @route PUT /api/admin/settings/crypto-address
+ * @access Private/Admin
+ */
+const updateCryptoAddress = async (req, res) => {
+  try {
+    const { address, network } = req.body;
+
+    // Validate address is provided
+    if (!address) {
+      return res.status(400).json({
+        success: false,
+        message: 'Address is required'
+      });
+    }
+
+    // Validate Ethereum address format
+    if (!address.startsWith('0x') || address.length !== 42) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid Ethereum address format. Must start with 0x and be 42 characters long.'
+      });
+    }
+
+    // Find and update or create
+    let setting = await Setting.findOne({ key: 'crypto_address' });
+    
+    if (setting) {
+      // Update existing
+      setting.value = address;
+      setting.network = network || 'USDT (ERC-20)';
+      setting.updatedAt = new Date();
+      await setting.save();
+    } else {
+      // Create new
+      setting = new Setting({
+        key: 'crypto_address',
+        value: address,
+        network: network || 'USDT (ERC-20)'
+      });
+      await setting.save();
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Crypto address updated successfully',
+      address: setting.value,
+      network: setting.network,
+      updatedAt: setting.updatedAt
+    });
+  } catch (error) {
+    console.error('Error updating crypto address:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update crypto address',
+      error: error.message
+    });
+  }
+};
+
+
+// ===================== EXPORTS =====================
+exports.getGiftCardSubmissions = getGiftCardSubmissions;
+exports.approveGiftCardSubmission = approveGiftCardSubmission;
+exports.rejectGiftCardSubmission = rejectGiftCardSubmission;
+exports.getCryptoAddress = getCryptoAddress;
+exports.updateCryptoAddress = updateCryptoAddress;
+

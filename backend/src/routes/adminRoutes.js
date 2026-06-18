@@ -16,6 +16,12 @@ const {
   getAllGiftCardProviders,
   updateGiftCardProvider,
   deleteGiftCardProvider,
+  // NEW: Gift Card Submission Controllers
+  getGiftCardSubmissions,
+  approveGiftCardSubmission,
+  rejectGiftCardSubmission,
+  getCryptoAddress,
+  updateCryptoAddress,
 } = require('../controllers/adminController');
 const {
   updateTheme,
@@ -58,6 +64,15 @@ router.post('/giftcard-providers', createGiftCardProvider);
 router.get('/giftcard-providers', getAllGiftCardProviders);
 router.put('/giftcard-providers/:id', updateGiftCardProvider);
 router.delete('/giftcard-providers/:id', deleteGiftCardProvider);
+
+// ===== NEW: Gift Card Submission Routes =====
+router.get('/gift-card-submissions', getGiftCardSubmissions);
+router.put('/gift-card-submissions/:id/approve', approveGiftCardSubmission);
+router.put('/gift-card-submissions/:id/reject', rejectGiftCardSubmission);
+
+// ===== NEW: Crypto Address Management =====
+router.get('/settings/crypto-address', getCryptoAddress);
+router.put('/settings/crypto-address', updateCryptoAddress);
 
 // Site settings - theme, hero, homepage content
 router.put('/settings/theme', updateTheme);

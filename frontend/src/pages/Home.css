@@ -4,10 +4,6 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-/* .section {
-  padding: var(--space-xl) 0;
-} */
-
 .hero-search:not(.is-compact) {
   border-bottom: 1px solid var(--color-border);
   border-radius: 0;
@@ -55,6 +51,403 @@
   font-weight: 600;
 }
 
+/* ===== PROPERTY CARDS - SMALLER PARENT CONTAINERS ===== */
+
+/* Make the entire card container smaller */
+.property-card,
+.event-card,
+.carousel-item {
+  max-width: 280px !important;
+  min-width: 200px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  flex-shrink: 0 !important;
+}
+
+.property-card:hover,
+.event-card:hover,
+.carousel-item:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Make the carousel slides smaller */
+.carousel-slide {
+  gap: 12px !important;
+}
+
+.carousel-slide > * {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+
+/* Smaller images inside cards */
+.property-card .property-image,
+.event-card .event-image,
+.property-card img,
+.event-card img,
+.carousel-item img {
+  height: 150px !important;
+  object-fit: cover !important;
+  width: 100% !important;
+}
+
+.property-card .property-image-wrapper,
+.event-card .event-image-wrapper {
+  height: 150px !important;
+  overflow: hidden !important;
+}
+
+/* ===== PADDING 2px ON ALL CONTENT AREAS ===== */
+.property-card .property-info,
+.event-card .event-info,
+.property-card .card-content,
+.event-card .card-content,
+.carousel-item .card-content {
+  padding: 2px !important;
+}
+
+/* Smaller titles */
+.property-card .property-title,
+.event-card .event-title,
+.property-card h3,
+.event-card h3,
+.carousel-item h3 {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin: 0 0 4px 0 !important;
+  line-height: 1.3 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* Smaller descriptions */
+.property-card .property-description,
+.event-card .event-description,
+.property-card .card-description,
+.event-card .card-description,
+.carousel-item p {
+  font-size: 12px !important;
+  color: #717171 !important;
+  margin: 0 0 6px 0 !important;
+  line-height: 1.4 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* Smaller price text */
+.property-card .property-price,
+.event-card .event-price,
+.property-card .price,
+.event-card .price,
+.carousel-item .price {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin: 4px 0 0 0 !important;
+}
+
+/* Smaller rating */
+.property-card .property-rating,
+.event-card .event-rating,
+.carousel-item .rating {
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin: 2px 0 0 0 !important;
+}
+
+/* Smaller location text */
+.property-card .property-location,
+.event-card .event-location,
+.carousel-item .location {
+  font-size: 12px !important;
+  color: #717171 !important;
+  margin: 0 0 4px 0 !important;
+}
+
+/* Compact spacing between elements */
+.property-card .property-meta,
+.event-card .event-meta,
+.carousel-item .meta {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-top: 2px !important;
+  padding-top: 2px !important;
+  border-top: 1px solid #f0f0f0 !important;
+}
+
+/* Smaller badges */
+.property-card .badge,
+.event-card .badge,
+.carousel-item .badge {
+  font-size: 10px !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+}
+
+/* ===== RESPONSIVE - MAKE CARDS EVEN SMALLER ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .property-card,
+  .event-card,
+  .carousel-item {
+    max-width: 240px !important;
+    min-width: 180px !important;
+  }
+
+  .property-card .property-image,
+  .event-card .event-image,
+  .property-card img,
+  .event-card img,
+  .carousel-item img {
+    height: 130px !important;
+  }
+
+  .property-card .property-image-wrapper,
+  .event-card .event-image-wrapper {
+    height: 130px !important;
+  }
+
+  .property-card .property-info,
+  .event-card .event-info,
+  .property-card .card-content,
+  .event-card .card-content,
+  .carousel-item .card-content {
+    padding: 2px !important;
+  }
+
+  .property-card .property-title,
+  .event-card .event-title,
+  .property-card h3,
+  .event-card h3,
+  .carousel-item h3 {
+    font-size: 13px !important;
+  }
+
+  .property-card .property-description,
+  .event-card .event-description,
+  .property-card .card-description,
+  .event-card .card-description,
+  .carousel-item p {
+    font-size: 11px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .property-card,
+  .event-card,
+  .carousel-item {
+    max-width: 200px !important;
+    min-width: 150px !important;
+  }
+
+  .property-card .property-image,
+  .event-card .event-image,
+  .property-card img,
+  .event-card img,
+  .carousel-item img {
+    height: 110px !important;
+  }
+
+  .property-card .property-image-wrapper,
+  .event-card .event-image-wrapper {
+    height: 110px !important;
+  }
+
+  .property-card .property-info,
+  .event-card .event-info,
+  .property-card .card-content,
+  .event-card .card-content,
+  .carousel-item .card-content {
+    padding: 2px !important;
+  }
+
+  .property-card .property-title,
+  .event-card .event-title,
+  .property-card h3,
+  .event-card h3,
+  .carousel-item h3 {
+    font-size: 12px !important;
+  }
+
+  .property-card .property-description,
+  .event-card .event-description,
+  .property-card .card-description,
+  .event-card .card-description,
+  .carousel-item p {
+    font-size: 10px !important;
+    -webkit-line-clamp: 1 !important;
+  }
+
+  .property-card .property-price,
+  .event-card .event-price,
+  .property-card .price,
+  .event-card .price,
+  .carousel-item .price {
+    font-size: 12px !important;
+  }
+
+  .property-card .property-location,
+  .event-card .event-location,
+  .carousel-item .location {
+    font-size: 10px !important;
+  }
+
+  .property-card .property-rating,
+  .event-card .event-rating,
+  .carousel-item .rating {
+    font-size: 10px !important;
+  }
+
+  .property-card .property-meta,
+  .event-card .event-meta,
+  .carousel-item .meta {
+    margin-top: 2px !important;
+    padding-top: 2px !important;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .property-card,
+  .event-card,
+  .carousel-item {
+    max-width: 160px !important;
+    min-width: 120px !important;
+  }
+
+  .property-card .property-image,
+  .event-card .event-image,
+  .property-card img,
+  .event-card img,
+  .carousel-item img {
+    height: 90px !important;
+  }
+
+  .property-card .property-image-wrapper,
+  .event-card .event-image-wrapper {
+    height: 90px !important;
+  }
+
+  .property-card .property-info,
+  .event-card .event-info,
+  .property-card .card-content,
+  .event-card .card-content,
+  .carousel-item .card-content {
+    padding: 2px !important;
+  }
+
+  .property-card .property-title,
+  .event-card .event-title,
+  .property-card h3,
+  .event-card h3,
+  .carousel-item h3 {
+    font-size: 11px !important;
+  }
+
+  .property-card .property-description,
+  .event-card .event-description,
+  .property-card .card-description,
+  .event-card .card-description,
+  .carousel-item p {
+    font-size: 9px !important;
+    -webkit-line-clamp: 1 !important;
+  }
+
+  .property-card .property-price,
+  .event-card .event-price,
+  .property-card .price,
+  .event-card .price,
+  .carousel-item .price {
+    font-size: 11px !important;
+  }
+
+  .property-card .property-location,
+  .event-card .event-location,
+  .carousel-item .location {
+    font-size: 9px !important;
+  }
+
+  .property-card .property-rating,
+  .event-card .event-rating,
+  .carousel-item .rating {
+    font-size: 9px !important;
+  }
+
+  .property-card .property-meta,
+  .event-card .event-meta,
+  .carousel-item .meta {
+    margin-top: 2px !important;
+    padding-top: 2px !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  .property-card,
+  .event-card,
+  .carousel-item {
+    max-width: 130px !important;
+    min-width: 100px !important;
+  }
+
+  .property-card .property-image,
+  .event-card .event-image,
+  .property-card img,
+  .event-card img,
+  .carousel-item img {
+    height: 70px !important;
+  }
+
+  .property-card .property-image-wrapper,
+  .event-card .event-image-wrapper {
+    height: 70px !important;
+  }
+
+  .property-card .property-info,
+  .event-card .event-info,
+  .property-card .card-content,
+  .event-card .card-content,
+  .carousel-item .card-content {
+    padding: 2px !important;
+  }
+
+  .property-card .property-title,
+  .event-card .event-title,
+  .property-card h3,
+  .event-card h3,
+  .carousel-item h3 {
+    font-size: 10px !important;
+  }
+
+  .property-card .property-description,
+  .event-card .event-description,
+  .property-card .card-description,
+  .event-card .card-description,
+  .carousel-item p {
+    font-size: 8px !important;
+  }
+
+  .property-card .property-meta,
+  .event-card .event-meta,
+  .carousel-item .meta {
+    margin-top: 1px !important;
+    padding-top: 1px !important;
+  }
+}
+
+/* Testimonials responsive */
 @media (max-width: 900px) {
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);

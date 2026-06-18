@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { messageAPI } from '../api';
 import { useSocket } from '../context/SocketContext';
 import { FiSend } from 'react-icons/fi';
-import './Messages.css';
+import './Messages.css'; // Make sure this path is correct
 
 const Messages = () => {
   const { userId } = useParams();
@@ -15,16 +15,24 @@ const Messages = () => {
   const [loading, setLoading] = useState(true);
   const endRef = useRef(null);
 
+  // Fetch Conversation
   useEffect(() => {
     if (!userId) return;
     setLoading(true);
-    messageAPI.getConversation(userId).then((res) => setMessages(res.data.messages)).finally(() => setLoading(false));
+    messageAPI.getConversation(userId)
+      .then((res) => setMessages(res.data.messages))
+      .finally(() => setLoading(false));
   }, [userId]);
 
+  // Socket Handler
   useEffect(() => {
     if (!socket) return;
     const handler = (msg) => {
-      if (msg.sender === userId || msg.receiver === userId || msg.sender._id === userId || msg.receiver === userId) {
+      // Check if message belongs to this conversation
+      const isSender = msg.sender === userId || msg.sender?._id === userId;
+      const isReceiver = msg.receiver === userId; // Assuming receiver is ID string in socket payload
+      
+      if (isSender || isReceiver) {
         setMessages((prev) => [...prev, msg]);
       }
     };
@@ -32,6 +40,7 @@ const Messages = () => {
     return () => socket.off('receive_message', handler);
   }, [socket, userId]);
 
+  // Auto Scroll
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -50,34 +59,68 @@ const Messages = () => {
     setInput('');
   };
 
-  if (loading) return <div className="container"><p>Loading conversation...</p></div>;
+  if (loading) return (
+    <div className="airbnb-container">
+      <div className="skeleton-loader">Loading...</div>
+    </div>
+  );
 
   return (
-    <div className="container messages-page">
-      <h1>Conversation</h1>
+    <div className="airbnb-container">
+      {/* Header */}
+      <div className="messages-header">
+        <h1>Messages</h1>
+        <p className="header-subtitle">Guest / Host messages</p>
+      </div>
+
+      {/* Chat Window */}
       <div className="chat-window">
         <div className="chat-messages">
-          {messages.length === 0 && <p className="empty-text">No messages yet. Say hello!</p>}
-          {messages.map((m, i) => {
-            const senderId = m.sender?._id || m.sender;
-            const isMe = senderId === user._id;
-            return (
-              <div key={m._id || i} className={`chat-bubble ${isMe ? 'me' : 'them'}`}>
-                <p>{m.text}</p>
-                <span className="chat-time">{new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-              </div>
-            );
-          })}
+          {messages.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-icon">✉️</div>
+              <h2>You don't have any messages</h2>
+              <p>Messages from your trips and hosts will appear here.</p>
+            </div>
+          ) : (
+            messages.map((m, i) => {
+              const senderId = m.sender?._id || m.sender;
+              const isMe = senderId === user._id;
+              
+              return (
+                <div key={m._id || i} className={`chat-bubble-container ${isMe ? 'me' : 'them'}`}>
+                  <div className="chat-bubble">
+                    <p className="message-text">{m.text}</p>
+                    <span className="chat-time">
+                      {new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                  </div>
+                </div>
+              );
+            })
+          )}
           <div ref={endRef} />
         </div>
-        <form className="chat-input-row" onSubmit={handleSend}>
-          <input
-            type="text"
-            placeholder="Type a message..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button type="submit" aria-label="Send"><FiSend /></button>
+
+        {/* Input Area */}
+        <form className="chat-input-area" onSubmit={handleSend}>
+          <div className="input-wrapper">
+            <input
+              type="text"
+              placeholder="Message your host..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              autoComplete="off"
+            />
+            <button 
+              type="submit" 
+              className="send-button" 
+              disabled={!input.trim()}
+              aria-label="Send message"
+            >
+              <FiSend />
+            </button>
+          </div>
         </form>
       </div>
     </div>

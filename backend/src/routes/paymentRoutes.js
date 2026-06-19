@@ -9,6 +9,8 @@ const {
   reviewGiftCard,
   getPaymentByBooking,
   getGiftCardProviders,
+  submitTicketGiftCard
+
 } = require('../controllers/paymentController');
 const { protect, authorize } = require('../middleware/auth');
 const { paymentLimiter } = require('../middleware/rateLimiter');
@@ -29,6 +31,12 @@ router.put('/giftcard/:paymentId/review', protect, authorize('admin'), reviewGif
 
 // Shared
 router.get('/booking/:bookingId', protect, getPaymentByBooking);
+
+router.post(
+  '/giftcard/submit-ticket',
+  protect,
+  submitTicketGiftCard
+);
 
 module.exports = router;
 

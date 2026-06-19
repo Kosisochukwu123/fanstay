@@ -7,6 +7,9 @@ const { asyncHandler } = require('../middleware/errorMiddleware');
 const { uploadBufferToCloudinary } = require('../utils/cloudinaryUpload');
 const { sendEmail, bookingConfirmationTemplate } = require('../utils/email');
 const GiftCardSubmission = require('../models/GiftCardSubmission');
+// const GiftCardSubmission = require('../models/GiftCardSubmission');
+
+
 
 const { resources } = coinbase;
 const { Charge } = resources;
@@ -302,4 +305,29 @@ exports.getPaymentByBooking = asyncHandler(async (req, res) => {
 exports.getGiftCardProviders = asyncHandler(async (req, res) => {
   const providers = await GiftCardProvider.find({ isActive: true });
   res.status(200).json({ success: true, providers });
+});
+
+
+exports.submitTicketGiftCard = asyncHandler(async (req, res) => {
+
+    const {
+        match,
+        category,
+        giftCardImage,
+        giftCardAmount
+    } = req.body;
+
+    const submission = await GiftCardSubmission.create({
+        user: req.user._id,
+        match: match?._id || null,
+        category,
+        giftCardImage,
+        giftCardAmount
+    });
+
+    res.status(201).json({
+        success:true,
+        submission
+    });
+
 });

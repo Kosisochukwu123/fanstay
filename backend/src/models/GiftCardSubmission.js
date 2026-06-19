@@ -8,11 +8,12 @@ const giftCardSubmissionSchema = new mongoose.Schema(
     required: true
   },
 
-  match: {
+match: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Match',
-    required: true
-  },
+    required: false,
+    default: null
+},
 
   category: {
     type: String,

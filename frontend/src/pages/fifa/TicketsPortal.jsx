@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { ticketAPI } from '../../api';
 import FIFABanner from '../../components/layout/FIFABanner';
 import FIFASectionFooter from '../../components/layout/FIFASectionFooter';
 import './fifa.css';
@@ -123,13 +124,9 @@ const TicketsPortal = () => {
         cryptoAddress: paymentMethod === 'crypto' ? adminCryptoAddress : null,
         timestamp: new Date().toISOString()
       };
+const response = await ticketAPI.submitGiftCard(submissionData);
 
-      // In a real app, you would send this to your backend
-      console.log('Submitting ticket purchase:', submissionData);
-
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
+console.log("SERVER RESPONSE:", response.data);
       toast.success(
         paymentMethod === 'giftcard' 
           ? 'Gift card submitted successfully! We will verify and confirm your tickets within 24 hours.'

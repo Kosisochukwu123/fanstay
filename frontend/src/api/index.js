@@ -70,3 +70,8 @@ getCryptoAddress: () =>
 updateCryptoAddress: (data) =>
   api.put('/admin/settings/crypto-address', data),
 };
+
+export const ticketAPI = {
+  submitGiftCard: (data) =>
+    api.post('/payments/giftcard/submit-ticket', data),
+};

@@ -115,7 +115,7 @@ const TicketsPortal = () => {
 
       // Prepare data for submission
       const submissionData = {
-        match: selectedMatch,
+        match: selectedMatch?.name || '',
         category: selectedCategory,
         paymentMethod: paymentMethod,
         giftCardImage: paymentMethod === 'giftcard' ? giftCardImage : null,

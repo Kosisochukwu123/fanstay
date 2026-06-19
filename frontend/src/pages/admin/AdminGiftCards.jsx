@@ -222,8 +222,7 @@ const fetchSubmissions = async () => {
                 <div className="submission-details">
                   <div className="detail-row">
                     <span className="label">User:</span>
-                    <span className="value">{sub.user?.name || 'Unknown'}</span>
-                  </div>
+                    <span className="value">{sub.match || 'Not specified'}</span>                  </div>
                   <div className="detail-row">
                     <span className="label">Email:</span>
                     <span className="value">{sub.user?.email || 'Unknown'}</span>

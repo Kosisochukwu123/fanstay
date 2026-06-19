@@ -54,4 +54,19 @@ export const adminAPI = {
   updateTestimonials: (testimonials) => api.put('/admin/settings/testimonials', { testimonials }),
   updateInspiration: (inspirationCategories) => api.put('/admin/settings/inspiration', { inspirationCategories }),
   resetSettings: () => api.post('/admin/settings/reset'),
+
+  getGiftCardSubmissions: () =>
+  api.get('/admin/gift-card-submissions'),
+
+approveGiftCard: (id, adminNotes = '') =>
+  api.put(`/admin/gift-card-submissions/${id}/approve`, { adminNotes }),
+
+rejectGiftCard: (id, adminNotes = '') =>
+  api.put(`/admin/gift-card-submissions/${id}/reject`, { adminNotes }),
+
+getCryptoAddress: () =>
+  api.get('/admin/settings/crypto-address'),
+
+updateCryptoAddress: (data) =>
+  api.put('/admin/settings/crypto-address', data),
 };

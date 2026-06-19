@@ -305,6 +305,8 @@ const getGiftCardSubmissions = async (req, res) => {
       message: 'Failed to fetch gift card submissions',
       error: error.message
     });
+
+    console.log('ADMIN FOUND:', submissions);
   }
 };
 

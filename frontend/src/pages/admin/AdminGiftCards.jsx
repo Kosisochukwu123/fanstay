@@ -19,16 +19,26 @@ const AdminGiftCards = () => {
     fetchCryptoAddress();
   }, []);
 
-  const fetchSubmissions = async () => {
-    try {
-      const res = await adminAPI.getGiftCardSubmissions();
-      setSubmissions(res.data.submissions);
-    } catch (error) {
-      toast.error('Failed to load gift card submissions');
-    } finally {
-      setLoading(false);
-    }
-  };
+const fetchSubmissions = async () => {
+  try {
+    const res = await adminAPI.getGiftCardSubmissions();
+
+    console.log('SUCCESS:', res.data);
+
+    setSubmissions(res.data.submissions);
+  } catch (error) {
+    console.error('ERROR:', error);
+    console.error('STATUS:', error.response?.status);
+    console.error('DATA:', error.response?.data);
+
+    toast.error(
+      error.response?.data?.message ||
+      'Failed to load gift card submissions'
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   const fetchCryptoAddress = async () => {
     try {

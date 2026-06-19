@@ -6,6 +6,7 @@ const GiftCardProvider = require('../models/GiftCardProvider');
 const { asyncHandler } = require('../middleware/errorMiddleware');
 const { uploadBufferToCloudinary } = require('../utils/cloudinaryUpload');
 const { sendEmail, bookingConfirmationTemplate } = require('../utils/email');
+const GiftCardSubmission = require('../models/GiftCardSubmission');
 
 const { resources } = coinbase;
 const { Charge } = resources;
@@ -61,6 +62,8 @@ exports.createCryptoCharge = asyncHandler(async (req, res) => {
     paymentProvider: 'coinbase_commerce',
     status: 'pending',
   });
+
+  
 
   res.status(201).json({
     success: true,
@@ -175,25 +178,53 @@ exports.submitGiftCard = asyncHandler(async (req, res) => {
     return res.status(400).json({ success: false, message: 'Gift card image is required' });
   }
 
-  const giftCardImage = await uploadBufferToCloudinary(req.file.buffer, 'fanstay/giftcards');
+const giftCardImage = await uploadBufferToCloudinary(req.file.buffer, 'fanstay/giftcards');
 
-  const payment = await Payment.create({
-    booking: booking._id,
-    user: req.user._id,
-    amount: booking.totalAmount,
-    currency: booking.currency || 'USD',
-    giftCardProvider: provider,
-    giftCardCode,
-    giftCardImage,
-    paymentProvider: 'gift_card',
-    status: 'awaiting_admin_review', // Step 4: Admin approval workflow
-  });
+console.log('UPLOADED IMAGE URL:', giftCardImage);
 
-  res.status(201).json({
-    success: true,
-    message: 'Gift card submitted for admin review',
-    payment: { ...payment.toObject(), giftCardCode: undefined },
-  });
+const payment = await Payment.create({
+  booking: booking._id,
+  user: req.user._id,
+  amount: booking.totalAmount,
+  currency: booking.currency || 'USD',
+  giftCardProvider: provider,
+  giftCardCode,
+  giftCardImage,
+  paymentProvider: 'gift_card',
+  status: 'awaiting_admin_review',
+});
+
+// DEBUG
+console.log('BOOKING:', booking);
+
+// Create admin submission
+await GiftCardSubmission.create({
+  user: req.user._id,
+
+  // TEMPORARY - we'll verify this field next
+  match: booking.match,
+
+  category: provider,
+  giftCardImage,
+  giftCardAmount: booking.totalAmount,
+  status: 'pending'
+});
+
+console.log('SUBMISSION SAVED:', submission);
+
+res.status(201).json({
+  success: true,
+  message: 'Gift card submitted for admin review',
+  payment: { ...payment.toObject(), giftCardCode: undefined },
+});
+
+console.log('BODY:', req.body);
+
+console.log('FILE EXISTS:', !!req.file);
+
+console.log('FILE:', req.file);
+
+console.log('USER:', req.user?._id);
 });
 
 // @desc    Step 4: Admin lists pending gift card submissions

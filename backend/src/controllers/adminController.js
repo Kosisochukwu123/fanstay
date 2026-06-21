@@ -7,6 +7,8 @@ const GiftCardProvider = require("../models/GiftCardProvider");
 const { asyncHandler } = require("../middleware/errorMiddleware");
 const GiftCardSubmission = require("../models/GiftCardSubmission");
 const Setting = require("../models/Setting");
+const HospitalitySubmission=
+require('../models/HospitalitySubmission');
 
 // ================== USERS ==================
 
@@ -343,6 +345,28 @@ exports.deleteGiftCardProvider = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: "Provider deleted" });
 });
 
+
+
+exports.getHospitalitySubmissions=
+async(req,res)=>{
+
+const submissions=
+await HospitalitySubmission.find()
+.populate(
+'user',
+'name email'
+)
+.sort({
+createdAt:-1
+});
+
+res.json({
+success:true,
+submissions
+});
+
+};
+
 // ===================== GIFT CARD SUBMISSION CONTROLLERS =====================
 
 /**
@@ -354,7 +378,7 @@ const getGiftCardSubmissions = async (req, res) => {
   try {
     const submissions = await GiftCardSubmission.find()
       .populate("user", "name email avatar")
-      .sort({ createdAt: -1 });
+      .sort("-createdAt");
 
     res.status(200).json({
       success: true,

@@ -22,6 +22,8 @@ const {
   rejectGiftCardSubmission,
   getCryptoAddress,
   updateCryptoAddress,
+
+  getHospitalitySubmissions
 } = require('../controllers/adminController');
 const {
   updateTheme,
@@ -81,5 +83,12 @@ router.put('/settings/homepage-sections', updateHomepageSections);
 router.put('/settings/testimonials', updateTestimonials);
 router.put('/settings/inspiration', updateInspiration);
 router.post('/settings/reset', resetSettings);
+
+router.get(
+'/hospitality-submissions',
+protect,
+authorize('admin'),
+getHospitalitySubmissions
+);
 
 module.exports = router;

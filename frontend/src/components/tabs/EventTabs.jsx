@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./EventTabs.css";
 import FIFASectionFooter from '../layout/FIFASectionFooter';
-
+import FootballPoster from "../../../public/poster.jfif"
 
 const EventsTab = ({ events: propEvents }) => {
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ const EventsTab = ({ events: propEvents }) => {
   }
 
   return (
-    <div className="events-tab-container">
+    <div className="events-tab-container" >
       {/* Header with title and view all button */}
       <div className="events-header">
         <h2 className="events-title">
@@ -97,7 +97,7 @@ const EventsTab = ({ events: propEvents }) => {
             >
               <div className="event-image">
                 {event.image ? (
-                  <img src={event.image} alt={event.title} />
+                  <img src={FootballPoster} alt={event.title} />
                 ) : (
                   <div className="image-placeholder">
                     <i className="fas fa-futbol"></i>

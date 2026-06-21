@@ -10,12 +10,12 @@ import './HeroSearch.css';
 
 import homeAnimation from '../animations/home.json';
 import soccerBallAnimation from '../animations/soccer-ball.json';
-import ticketAnimation from '../animations/ticket.json';
+import ticketAnimation from '../animations/bell.json';
 
 const SUB_TABS = [
   { key: 'stays', label: 'Homes', animation: homeAnimation },
   { key: 'events', label: 'Events', animation: soccerBallAnimation },
-  { key: 'tickets', label: 'Tickets', animation: ticketAnimation },
+  { key: 'tickets', label: 'Services', animation: ticketAnimation },
 ];
 
 const HeroSearch = ({ backgroundImage, activeTab = 'stays', onTabChange, logoText = 'FanStay', onMenuClick }) => {

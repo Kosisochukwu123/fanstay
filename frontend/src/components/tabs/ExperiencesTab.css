@@ -1,0 +1,470 @@
+/* ExperiencesTab.css - Clean, demure, Airbnb-inspired */
+
+/* ----- Reset & base ----- */
+.experiences-tab {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #222222;
+  background: #ffffff;
+  max-width: 744px;
+  margin: 1rem auto;
+  padding: 0 16px 16px;
+}
+
+/* ----- App banner (Airbnb style) ----- */
+.app-banner {
+  background: #222222;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 0 0 24px 0;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.banner-icon {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.banner-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.banner-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.banner-btn {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #222222;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.banner-btn:hover {
+  transform: scale(1.02);
+}
+
+/* ----- City sections ----- */
+.services-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 20px;
+}
+
+.city-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.city-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222222;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+/* ----- Category chips (Airbnb filter style) ----- */
+.category-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f7f7f7;
+  border: 1px solid #dddddd;
+  border-radius: 24px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #222222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip-btn:hover {
+  border-color: #222222;
+  background: #eeeeee;
+}
+
+.chip-icon {
+  font-size: 16px !important;
+  color: #717171;
+}
+
+/* ----- Experiences grid (responsive) ----- */
+.experiences-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ----- Experience card (Airbnb style) ----- */
+.experience-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.experience-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Image container */
+.exp-image-container {
+  position: relative;
+  padding-top: 66.67%; /* 3:2 aspect ratio */
+  background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+  overflow: hidden;
+}
+
+.exp-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exp-icon {
+  font-size: 48px !important;
+  color: #999999;
+}
+
+/* Rating badge */
+.rating-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.star-icon {
+  font-size: 14px !important;
+  color: #ff385c;
+}
+
+.reviews-count {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+}
+
+/* Card content */
+.exp-content {
+  padding: 12px 14px 14px;
+}
+
+.exp-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222222;
+  margin: 0 0 2px 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.exp-host {
+  font-size: 12px;
+  color: #717171;
+  margin: 0 0 8px 0;
+}
+
+.exp-pricing {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+}
+
+.price-from {
+  font-size: 12px;
+  color: #717171;
+}
+
+.price-amount {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.price-suffix {
+  font-size: 13px;
+  color: #717171;
+}
+
+.price-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  color: #717171;
+  background: #f7f7f7;
+  padding: 0 8px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.badge-icon {
+  font-size: 14px !important;
+}
+
+.exp-minimum {
+  font-size: 12px;
+  color: #717171;
+  margin: 6px 0 0 0;
+  padding-top: 6px;
+  border-top: 1px solid #eeeeee;
+}
+
+/* ----- Discover section ----- */
+.discover-section {
+  padding: 16px 0 24px;
+  border-top: 1px solid #eaeaea;
+  margin-top: 4px;
+}
+
+.discover-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.discover-link:hover {
+  border-bottom-color: #222222;
+}
+
+.arrow-icon {
+  font-size: 18px !important;
+}
+
+/* ----- Bottom navigation (Airbnb style) ----- */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 4px;
+  border-top: 1px solid #eaeaea;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  color: #717171;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 8px;
+}
+
+.nav-item:hover {
+  color: #222222;
+}
+
+.nav-item.active {
+  color: #222222;
+}
+
+.nav-item .material-symbols-outlined {
+  font-size: 22px;
+}
+
+/* ----- Responsive ----- */
+
+/* Mobile first - already optimized for small screens */
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) {
+  .experiences-tab {
+    padding: 0 24px 24px;
+  }
+
+  .app-banner {
+    padding: 16px 20px;
+    border-radius: 16px;
+  }
+
+  .banner-title {
+    font-size: 16px;
+  }
+
+  .banner-subtitle {
+    font-size: 14px;
+  }
+
+  .banner-btn {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+
+  .city-title {
+    font-size: 26px;
+  }
+
+  .experiences-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .exp-icon {
+    font-size: 56px !important;
+  }
+
+  .chip-btn {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+
+  .bottom-nav {
+    padding: 12px 0 8px;
+  }
+
+  .nav-item {
+    font-size: 12px;
+  }
+
+  .nav-item .material-symbols-outlined {
+    font-size: 26px;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .experiences-tab {
+    max-width: 968px;
+    padding: 0 32px 32px;
+  }
+
+  .experiences-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .city-title {
+    font-size: 28px;
+  }
+
+  .exp-title {
+    font-size: 15px;
+  }
+
+  .exp-icon {
+    font-size: 64px !important;
+  }
+
+  .discover-link {
+    font-size: 16px;
+  }
+}
+
+/* Small phones (320px - 374px) */
+@media (max-width: 374px) {
+  .experiences-tab {
+    padding: 0 8px 8px;
+  }
+
+  .app-banner {
+    padding: 10px 12px;
+  }
+
+  .banner-title {
+    font-size: 13px;
+  }
+
+  .banner-subtitle {
+    font-size: 11px;
+  }
+
+  .banner-btn {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
+
+  .city-title {
+    font-size: 18px;
+  }
+
+  .experiences-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .exp-title {
+    font-size: 13px;
+  }
+
+  .price-amount {
+    font-size: 14px;
+  }
+
+  .chip-btn {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+
+  .chip-icon {
+    font-size: 14px !important;
+  }
+}
+
+/* Mid-size phones (375px - 767px) */
+@media (min-width: 375px) and (max-width: 767px) {
+  .experiences-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}

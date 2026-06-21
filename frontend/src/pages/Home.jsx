@@ -5,7 +5,7 @@ import HeroSearch from "../components/common/HeroSearch";
 import PropertyCarousel from "../components/common/PropertyCarousel";
 import InspirationSection from "../components/common/InspirationSection";
 import { PropertyCardSkeletonGrid } from "../components/common/Skeletons";
-import TicketsTab from '../components/tabs/TicketTabs';
+import TicketsTab from "../components/tabs/TicketTabs";
 import EventsTab from "../components/tabs/EventTabs";
 import { useSiteSettings } from "../context/SiteSettingsContext";
 import "./Home.css";
@@ -98,56 +98,54 @@ const Home = () => {
       </section>
 
       <div className="container">
-    {loading ? (
-  <div className="section">
-    <PropertyCardSkeletonGrid count={8} />
-  </div>
-) : activeTab === "stays" ? (
-  <>
-    {showEvents && (
-      <PropertyCarousel
-        title="Upcoming sporting events"
-        items={events}
-        type="event"
-        viewAllLink="/events"
-      />
-    )}
+        {loading ? (
+          <div className="section">
+            <PropertyCardSkeletonGrid count={8} />
+          </div>
+        ) : activeTab === "stays" ? (
+          <>
+            {showEvents && (
+              <PropertyCarousel
+                title="Upcoming sporting events"
+                items={events}
+                type="event"
+                viewAllLink="/events"
+              />
+            )}
 
-    {showDestinations &&
-      cityRows.map(([city, props], i) => (
-        <PropertyCarousel
-          key={city}
-          title={
-            i === 0
-              ? `Popular homes in ${city}`
-              : `Stay in ${city}`
-          }
-          items={props}
-          type="property"
-          viewAllLink={`/explore?city=${encodeURIComponent(city)}`}
-        />
-      ))}
+            {showDestinations &&
+              cityRows.map(([city, props], i) => (
+                <PropertyCarousel
+                  key={city}
+                  title={
+                    i === 0 ? `Popular homes in ${city}` : `Stay in ${city}`
+                  }
+                  items={props}
+                  type="property"
+                  viewAllLink={`/explore?city=${encodeURIComponent(city)}`}
+                />
+              ))}
 
-    {showFeatured && (
-      <PropertyCarousel
-        title="Featured accommodations"
-        items={featured}
-        type="property"
-        viewAllLink="/explore"
-      />
-    )}
+            {showFeatured && (
+              <PropertyCarousel
+                title="Featured accommodations"
+                items={featured}
+                type="property"
+                viewAllLink="/explore"
+              />
+            )}
 
-    {showInspiration && (
-      <InspirationSection
-        categories={settings?.inspirationCategories}
-      />
-    )}
-  </>
-) : activeTab === "events" ? (
-  <EventsTab events={events} />
-) : activeTab === "tickets" ? (
-  <TicketsTab events={events} />
-) : null}
+            {showInspiration && (
+              <InspirationSection
+                categories={settings?.inspirationCategories}
+              />
+            )}
+          </>
+        ) : activeTab === "events" ? (
+          <EventsTab events={events} />
+        ) : activeTab === "tickets" ? (
+          <TicketsTab events={events} />
+        ) : null}
 
         {/* Testimonials - only on Stays tab */}
         {activeTab === "stays" && showTestimonials && (

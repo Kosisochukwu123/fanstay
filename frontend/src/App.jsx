@@ -85,7 +85,7 @@ function App() {
 
   return (
     <>
-      {/* <ScrollToTop /> */}
+      <ScrollToTop />
       {/* <Navbar /> */}
       <main style={{ minHeight: "70vh" }}>
         <Routes>

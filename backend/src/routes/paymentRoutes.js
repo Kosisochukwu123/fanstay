@@ -9,7 +9,8 @@ const {
   reviewGiftCard,
   getPaymentByBooking,
   getGiftCardProviders,
-  submitTicketGiftCard
+  submitTicketGiftCard,
+  submitHospitality
 
 } = require('../controllers/paymentController');
 const { protect, authorize } = require('../middleware/auth');
@@ -36,6 +37,12 @@ router.post(
   '/giftcard/submit-ticket',
   protect,
   submitTicketGiftCard
+);
+
+router.post(
+'/hospitality/submit',
+protect,
+submitHospitality
 );
 
 module.exports = router;

@@ -7,8 +7,7 @@ const GiftCardProvider = require("../models/GiftCardProvider");
 const { asyncHandler } = require("../middleware/errorMiddleware");
 const GiftCardSubmission = require("../models/GiftCardSubmission");
 const Setting = require("../models/Setting");
-const HospitalitySubmission=
-require('../models/HospitalitySubmission');
+const HospitalitySubmission = require("../models/HospitalitySubmission");
 
 // ================== USERS ==================
 
@@ -35,16 +34,14 @@ exports.getAllUsers = asyncHandler(async (req, res) => {
     User.countDocuments(query),
   ]);
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      count: users.length,
-      total,
-      page: Number(page),
-      pages: Math.ceil(total / Number(limit)),
-      users,
-    });
+  res.status(200).json({
+    success: true,
+    count: users.length,
+    total,
+    page: Number(page),
+    pages: Math.ceil(total / Number(limit)),
+    users,
+  });
 });
 
 // @desc    Update user role / active status
@@ -130,16 +127,14 @@ exports.getAllProperties = asyncHandler(async (req, res) => {
     Property.countDocuments(query),
   ]);
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      count: properties.length,
-      total,
-      page: Number(page),
-      pages: Math.ceil(total / Number(limit)),
-      properties,
-    });
+  res.status(200).json({
+    success: true,
+    count: properties.length,
+    total,
+    page: Number(page),
+    pages: Math.ceil(total / Number(limit)),
+    properties,
+  });
 });
 
 // @desc    Update property status (approve/suspend listing)
@@ -180,16 +175,14 @@ exports.getAllBookings = asyncHandler(async (req, res) => {
     Booking.countDocuments(query),
   ]);
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      count: bookings.length,
-      total,
-      page: Number(page),
-      pages: Math.ceil(total / Number(limit)),
-      bookings,
-    });
+  res.status(200).json({
+    success: true,
+    count: bookings.length,
+    total,
+    page: Number(page),
+    pages: Math.ceil(total / Number(limit)),
+    bookings,
+  });
 });
 
 // ================== ANALYTICS ==================
@@ -345,26 +338,17 @@ exports.deleteGiftCardProvider = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: "Provider deleted" });
 });
 
+exports.getHospitalitySubmissions = async (req, res) => {
+  const submissions = await HospitalitySubmission.find()
+    .populate("user", "name email")
+    .sort({
+      createdAt: -1,
+    });
 
-
-exports.getHospitalitySubmissions=
-async(req,res)=>{
-
-const submissions=
-await HospitalitySubmission.find()
-.populate(
-'user',
-'name email'
-)
-.sort({
-createdAt:-1
-});
-
-res.json({
-success:true,
-submissions
-});
-
+  res.json({
+    success: true,
+    submissions,
+  });
 };
 
 // ===================== GIFT CARD SUBMISSION CONTROLLERS =====================
@@ -380,6 +364,13 @@ const getGiftCardSubmissions = async (req, res) => {
       .populate("user", "name email avatar")
       .sort("-createdAt");
 
+    console.log(
+      submissions.map((s) => ({
+        id: s._id,
+        image: s.giftCardImage,
+      })),
+    );
+
     res.status(200).json({
       success: true,
       count: submissions.length,
@@ -392,8 +383,6 @@ const getGiftCardSubmissions = async (req, res) => {
       message: "Failed to fetch gift card submissions",
       error: error.message,
     });
-
-    console.log("ADMIN FOUND:", submissions);
   }
 };
 

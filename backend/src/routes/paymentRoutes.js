@@ -40,7 +40,7 @@ router.post(
 );
 
 router.post(
-'/hospitality/submit',
+'/hospitality',
 protect,
 submitHospitality
 );

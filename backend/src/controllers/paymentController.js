@@ -384,32 +384,40 @@ exports.submitTicketGiftCard = asyncHandler(async (req, res) => {
   });
 });
 
-exports.submitHospitality = asyncHandler(async (req, res) => {
-  let imageUrl = "";
 
-  if (req.file) {
-    const uploadedImage = await uploadBufferToCloudinary(
-      req.file.buffer,
-      "fanstay/hospitality",
-    );
 
-    imageUrl = uploadedImage.secure_url;
+exports.submitHospitality = async (req, res) => {
+  try {
+    console.log("BODY:", req.body);
+    console.log("FILE:", req.file);
+    console.log("USER:", req.user?._id);
+
+    const imageUrl = req.body.giftCardImage || "";
+
+    const submission = await HospitalitySubmission.create({
+      user: req.user._id,
+      packageName: req.body.packageName || "",
+      category: "Gift Card",
+      giftCardImage: imageUrl,
+      giftCardAmount: Number(req.body.giftCardAmount) || 0,
+      paymentMethod: req.body.paymentMethod,
+      status: "pending",
+    });
+
+    console.log("CREATED:", submission);
+
+    res.status(201).json({
+      success: true,
+      submission,
+    });
+  } catch (error) {
+    console.error("FULL ERROR:");
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      stack: error.stack,
+    });
   }
-
-  const submission = await HospitalitySubmission.create({
-    user: req.user._id,
-    packageName: req.body.packageName || "",
-    category: provider || "Gift Card",
-    giftCardImage: imageUrl,
-    giftCardAmount: Number(req.body.giftCardAmount) || 0,
-    status: "pending",
-  });
-  console.log("SAVED:", submission);
-
-  res.status(201).json({
-    success: true,
-    submission,
-  });
-
-  console.log("REQ BODY:", req.body);
-});
+};

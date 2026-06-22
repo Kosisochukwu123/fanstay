@@ -21,6 +21,8 @@ const HospitalityPackages = () => {
   const [network, setNetwork] = useState("");
   const [cryptoAmount, setCryptoAmount] = useState("");
 
+  const [selectedFile, setSelectedFile] = useState(null);
+
   useEffect(() => {
     fetchWallet();
   }, []);
@@ -46,29 +48,47 @@ const HospitalityPackages = () => {
 
     if (!file) return;
 
-    setGiftCardImage(file);
+    setSelectedFile(file);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setGiftCardImage(reader.result);
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const submitPackage = async () => {
     try {
-      const data = {
-        packageName: selectedPackage.name,
-        paymentMethod,
-        giftCardImage,
-        giftCardAmount,
-        cryptoAmount,
-        cryptoAddress: walletAddress,
-      };
+      const formData = new FormData();
 
-      const res = await ticketAPI.submitHospitality(data);
+      formData.append("packageName", selectedPackage?.name);
+
+      formData.append("paymentMethod", paymentMethod);
+
+      if (paymentMethod === "giftcard") {
+        formData.append("giftCardImage", selectedFile);
+
+        formData.append("giftCardAmount", giftCardAmount);
+      }
+
+      if (paymentMethod === "crypto") {
+        formData.append("cryptoAmount", cryptoAmount);
+
+        formData.append("cryptoAddress", walletAddress);
+      }
+
+      const res = await paymentAPI.submitHospitality(formData);
 
       console.log("RESPONSE:", res.data);
-      console.log("IMAGE FROM DB:", res.data.submission.giftCardImage);
 
-      toast.success("Submitted");
+      toast.success("Submitted successfully");
+
       setIsModalOpen(false);
     } catch (err) {
       console.log(err);
+
       toast.error("Submission failed");
     }
   };

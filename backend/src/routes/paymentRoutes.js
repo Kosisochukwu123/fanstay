@@ -40,9 +40,12 @@ router.post(
 );
 
 router.post(
-'/hospitality',
-protect,
-submitHospitality
+   "/hospitality",
+   protect,
+   upload.single(
+      "giftCardImage"
+   ),
+   submitHospitality
 );
 
 module.exports = router;

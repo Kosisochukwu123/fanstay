@@ -49,6 +49,6 @@ const hospitalitySubmissionSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model(
-'HotelitySubmission',
+'HospitalitySubmission',
 hospitalitySubmissionSchema
 );

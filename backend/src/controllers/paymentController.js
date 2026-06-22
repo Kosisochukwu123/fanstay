@@ -180,8 +180,7 @@ exports.getCryptoPaymentStatus = asyncHandler(async (req, res) => {
 // @route   POST /api/payments/giftcard/submit
 // @access  Private (guest)
 exports.submitGiftCard = asyncHandler(async (req, res) => {
-
-    console.log("SUBMIT GIFT CARD HIT");
+  console.log("SUBMIT GIFT CARD HIT");
 
   const { bookingId, provider, giftCardCode } = req.body;
 
@@ -219,41 +218,41 @@ exports.submitGiftCard = asyncHandler(async (req, res) => {
   }
 
   const uploadedImage = await uploadBufferToCloudinary(
-  req.file.buffer,
-  "fanstay/giftcards"
-);
+    req.file.buffer,
+    "fanstay/giftcards",
+  );
 
-console.log("IMAGE:", uploadedImage);
+  console.log("IMAGE:", uploadedImage);
 
-const imageUrl = uploadedImage.secure_url;
+  const imageUrl = uploadedImage.secure_url;
 
-console.log("SAVING URL:", imageUrl);
+  console.log("SAVING URL:", imageUrl);
 
-const payment = await Payment.create({
-  booking: booking._id,
-  user: req.user._id,
-  amount: booking.totalAmount,
-  currency: booking.currency || "USD",
-  giftCardProvider: provider,
-  giftCardCode,
-  giftCardImage: imageUrl,
-  paymentProvider: "gift_card",
-  status: "awaiting_admin_review",
-});
+  const payment = await Payment.create({
+    booking: booking._id,
+    user: req.user._id,
+    amount: booking.totalAmount,
+    currency: booking.currency || "USD",
+    giftCardProvider: provider,
+    giftCardCode,
+    giftCardImage: imageUrl,
+    paymentProvider: "gift_card",
+    status: "awaiting_admin_review",
+  });
 
-console.log({
-  imageUrl,
-  user: req.user._id,
-});
+  console.log({
+    imageUrl,
+    user: req.user._id,
+  });
 
-await GiftCardSubmission.create({
-  user: req.user._id,
-  match: booking.match || "",
-  category: provider,
-  giftCardImage: imageUrl,
-  giftCardAmount: booking.totalAmount,
-  status: "pending",
-});
+  await GiftCardSubmission.create({
+    user: req.user._id,
+    match: booking.match || "",
+    category: provider,
+    giftCardImage: imageUrl,
+    giftCardAmount: booking.totalAmount,
+    status: "pending",
+  });
 
   res.status(201).json({
     success: true,
@@ -386,6 +385,17 @@ exports.submitTicketGiftCard = asyncHandler(async (req, res) => {
 });
 
 exports.submitHospitality = asyncHandler(async (req, res) => {
+  let imageUrl = "";
+
+  if (req.file) {
+    const uploadedImage = await uploadBufferToCloudinary(
+      req.file.buffer,
+      "fanstay/hospitality",
+    );
+
+    imageUrl = uploadedImage.secure_url;
+  }
+
   const submission = await HospitalitySubmission.create({
     user: req.user._id,
 
@@ -393,7 +403,7 @@ exports.submitHospitality = asyncHandler(async (req, res) => {
 
     paymentMethod: req.body.paymentMethod,
 
-    giftCardImage: req.body.giftCardImage,
+    giftCardImage: imageUrl,
 
     giftCardAmount: req.body.giftCardAmount,
 

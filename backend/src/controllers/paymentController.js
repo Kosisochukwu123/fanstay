@@ -180,6 +180,9 @@ exports.getCryptoPaymentStatus = asyncHandler(async (req, res) => {
 // @route   POST /api/payments/giftcard/submit
 // @access  Private (guest)
 exports.submitGiftCard = asyncHandler(async (req, res) => {
+
+    console.log("SUBMIT GIFT CARD HIT");
+
   const { bookingId, provider, giftCardCode } = req.body;
 
   const booking = await Booking.findById(bookingId);
@@ -223,6 +226,8 @@ exports.submitGiftCard = asyncHandler(async (req, res) => {
 console.log("IMAGE:", uploadedImage);
 
 const imageUrl = uploadedImage.secure_url;
+
+console.log("SAVING URL:", imageUrl);
 
 const payment = await Payment.create({
   booking: booking._id,

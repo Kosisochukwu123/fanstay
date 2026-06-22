@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ticketAPI } from "../../api/index";
 import FIFABanner from "../../components/layout/FIFABanner";
 import FIFASectionFooter from "../../components/layout/FIFASectionFooter";
-import { adminAPI } from "../../api";
+import { adminAPI } from "../../api/index";
 import "./fifa.css";
 
 const HospitalityPackages = () => {
@@ -45,19 +46,26 @@ const HospitalityPackages = () => {
 
     if (!file) return;
 
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setGiftCardImage(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+    setGiftCardImage(file);
   };
 
   const submitPackage = async () => {
     try {
-      toast.success("Submitted");
+      const data = {
+        packageName: selectedPackage.name,
+        paymentMethod,
+        giftCardImage,
+        giftCardAmount,
+        cryptoAmount,
+        cryptoAddress: walletAddress,
+      };
 
+      const res = await ticketAPI.submitHospitality(data);
+
+      console.log("RESPONSE:", res.data);
+      console.log("IMAGE FROM DB:", res.data.submission.giftCardImage);
+
+      toast.success("Submitted");
       setIsModalOpen(false);
     } catch (err) {
       console.log(err);
@@ -209,7 +217,11 @@ const HospitalityPackages = () => {
                 />
 
                 {giftCardImage && (
-                  <img src={giftCardImage} className="gift-preview" />
+                  <img
+                    src={URL.createObjectURL(giftCardImage)}
+                    className="gift-preview"
+                    alt=""
+                  />
                 )}
               </div>
             )}

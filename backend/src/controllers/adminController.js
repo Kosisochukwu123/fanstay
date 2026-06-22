@@ -364,6 +364,9 @@ const getGiftCardSubmissions = async (req, res) => {
       .populate("user", "name email avatar")
       .sort("-createdAt");
 
+          res.set("Cache-Control", "no-store");
+
+
     console.log(
       submissions.map((s) => ({
         id: s._id,

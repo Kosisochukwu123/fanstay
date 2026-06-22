@@ -1,4 +1,3 @@
-// src/pages/fifa/TicketsPortal.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -15,10 +14,8 @@ const TicketsPortal = () => {
   const [paymentMethod, setPaymentMethod] = useState('giftcard');
   const [giftCardImage, setGiftCardImage] = useState(null);
   const [giftCardAmount, setGiftCardAmount] = useState('');
-  const [cryptoAddress, setCryptoAddress] = useState('');
   const [cryptoAmount, setCryptoAmount] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showCryptoAddress, setShowCryptoAddress] = useState(false);
 
   // This would come from admin settings in a real app
   const adminCryptoAddress = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e';
@@ -54,30 +51,15 @@ const TicketsPortal = () => {
 
   const handlePaymentMethodChange = (method) => {
     setPaymentMethod(method);
-    if (method === 'crypto') {
-      setShowCryptoAddress(true);
-    } else {
-      setShowCryptoAddress(false);
-    }
   };
 
   const handleGiftCardImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Validate file type
-      if (!file.type.startsWith('image/')) {
-        toast.error('Please upload an image file');
-        return;
-      }
-      // Validate file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error('Image size should be less than 5MB');
-        return;
-      }
+      if (!file.type.startsWith('image/')) { toast.error('Please upload an image file'); return; }
+      if (file.size > 5 * 1024 * 1024) { toast.error('Image size should be less than 5MB'); return; }
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setGiftCardImage(reader.result);
-      };
+      reader.onloadend = () => { setGiftCardImage(reader.result); };
       reader.readAsDataURL(file);
     }
   };
@@ -87,33 +69,14 @@ const TicketsPortal = () => {
     setIsSubmitting(true);
 
     try {
-      // Validate based on payment method
       if (paymentMethod === 'giftcard') {
-        if (!giftCardImage) {
-          toast.error('Please upload a gift card image');
-          setIsSubmitting(false);
-          return;
-        }
-        if (!giftCardAmount) {
-          toast.error('Please enter the gift card amount');
-          setIsSubmitting(false);
-          return;
-        }
+        if (!giftCardImage) { toast.error('Please upload a gift card image'); setIsSubmitting(false); return; }
+        if (!giftCardAmount) { toast.error('Please enter the gift card amount'); setIsSubmitting(false); return; }
       } else {
-        // Crypto payment validation
-        if (!cryptoAmount) {
-          toast.error('Please enter the amount you want to pay');
-          setIsSubmitting(false);
-          return;
-        }
-        if (parseFloat(cryptoAmount) <= 0) {
-          toast.error('Please enter a valid amount');
-          setIsSubmitting(false);
-          return;
-        }
+        if (!cryptoAmount) { toast.error('Please enter the amount you want to pay'); setIsSubmitting(false); return; }
+        if (parseFloat(cryptoAmount) <= 0) { toast.error('Please enter a valid amount'); setIsSubmitting(false); return; }
       }
 
-      // Prepare data for submission
       const submissionData = {
         match: selectedMatch?.name || '',
         category: selectedCategory,
@@ -124,16 +87,16 @@ const TicketsPortal = () => {
         cryptoAddress: paymentMethod === 'crypto' ? adminCryptoAddress : null,
         timestamp: new Date().toISOString()
       };
-const response = await ticketAPI.submitGiftCard(submissionData);
 
-console.log("SERVER RESPONSE:", response.data);
+      const response = await ticketAPI.submitGiftCard(submissionData);
+      console.log("SERVER RESPONSE:", response.data);
+      
       toast.success(
         paymentMethod === 'giftcard' 
           ? 'Gift card submitted successfully! We will verify and confirm your tickets within 24 hours.'
           : `Crypto payment request submitted! Please send ${cryptoAmount} USDT to ${adminCryptoAddress}`
       );
 
-      // Reset form and close modal
       resetForm();
       setIsModalOpen(false);
 
@@ -150,7 +113,6 @@ console.log("SERVER RESPONSE:", response.data);
     setGiftCardImage(null);
     setGiftCardAmount('');
     setCryptoAmount('');
-    setShowCryptoAddress(false);
     setSelectedMatch(null);
   };
 
@@ -165,26 +127,26 @@ console.log("SERVER RESPONSE:", response.data);
     <div className="fifa-page-container">
       <FIFABanner />
       
-      <div className="page-content">
+      <div className="tickets-container page-content">
         <div className="page-header">
           <h1>FIFA World Cup 2026™ Tickets</h1>
           <p>Secure your seats for the world's greatest football tournament</p>
         </div>
 
-        {/* Ticket Categories */}
+        {/* Ticket Categories - Styled like Hospitality Cards */}
         <div className="ticket-categories">
-          <h2 className="section-title-small">Ticket Categories</h2>
-          <div className="categories-grid">
+          <h2 className="section-title">Ticket Categories</h2>
+          <div className="packages-grid">
             {ticketCategories.map((cat, idx) => (
-              <div key={idx} className="category-card">
-                <h3>{cat.name}</h3>
-                <div className="price">{cat.price}</div>
-                <p>{cat.features}</p>
+              <div key={idx} className="package-card">
+                <h2>{cat.name}</h2>
+                <div className="package-price">{cat.price}</div>
+                <p className="package-description">{cat.features}</p>
                 <button 
-                  className="fifa-btn-primary"
+                  className="book-btn"
                   onClick={() => handleCategorySelect(cat.name)}
                 >
-                  Select
+                  Select Category →
                 </button>
               </div>
             ))}
@@ -192,7 +154,7 @@ console.log("SERVER RESPONSE:", response.data);
         </div>
 
         {/* Match Listings */}
-        <h2 className="section-title-small">Available Matches</h2>
+        <h2 className="section-title">Available Matches</h2>
         <div className="matches-table">
           {matches.map((match) => (
             <div key={match.id} className="match-row">
@@ -231,60 +193,68 @@ console.log("SERVER RESPONSE:", response.data);
 
       <FIFASectionFooter />
 
-      {/* Modal/Popup */}
+      {/* Modal/Popup - Styled exactly like HospitalityPackages */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal} disabled={isSubmitting}>
-              ×
-            </button>
+          <div className="modal-content booking-modal" onClick={(e) => e.stopPropagation()}>
             
-            <h2>Purchase Tickets</h2>
-            
-            <div className="modal-summary">
-              <div className="summary-item">
-                <span className="summary-label">Match:</span>
-                <span className="summary-value">{selectedMatch?.name || 'Not selected'}</span>
+            <div className="modal-header">
+              <div>
+                <span className="step-badge">Step 1 of 2</span>
+                <h2>🎟️ {selectedMatch?.name || 'Purchase Tickets'}</h2>
+                <p className="modal-subtitle">Complete your ticket request securely</p>
+              </div>
+              <button className="close-modal" onClick={closeModal} disabled={isSubmitting}>
+                ✕
+              </button>
+            </div>
+
+            <div className="booking-summary-card">
+              <h4>Request Summary</h4>
+              <div className="summary-row">
+                <span>Match</span>
+                <strong>{selectedMatch?.name || 'General Category Request'}</strong>
               </div>
               {selectedCategory && (
-                <div className="summary-item">
-                  <span className="summary-label">Category:</span>
-                  <span className="summary-value">{selectedCategory}</span>
+                <div className="summary-row">
+                  <span>Category</span>
+                  <strong>{selectedCategory}</strong>
                 </div>
               )}
-              <div className="summary-item">
-                <span className="summary-label">Venue:</span>
-                <span className="summary-value">{selectedMatch?.venue || 'Not selected'}</span>
+              <div className="summary-row">
+                <span>Venue</span>
+                <strong>{selectedMatch?.venue || 'N/A'}</strong>
+              </div>
+              <div className="summary-row">
+                <span>Status</span>
+                <strong style={{color: '#28a745'}}>Available</strong>
               </div>
             </div>
 
             <form onSubmit={handleSubmit}>
-              {/* Payment Method Selection */}
-              <div className="payment-methods">
-                <h3>Select Payment Method</h3>
-                <div className="payment-options">
-                  <button
-                    type="button"
-                    className={`payment-option ${paymentMethod === 'giftcard' ? 'active' : ''}`}
-                    onClick={() => handlePaymentMethodChange('giftcard')}
-                  >
-                    <span className="payment-icon">🎁</span>
-                    <span>Gift Card</span>
-                  </button>
-                  <button
-                    type="button"
-                    className={`payment-option ${paymentMethod === 'crypto' ? 'active' : ''}`}
-                    onClick={() => handlePaymentMethodChange('crypto')}
-                  >
-                    <span className="payment-icon">₿</span>
-                    <span>Crypto Payment</span>
-                  </button>
-                </div>
+              <div className="payment-tabs">
+                <button
+                  type="button"
+                  className={paymentMethod === "giftcard" ? "active-payment" : ""}
+                  onClick={() => handlePaymentMethodChange("giftcard")}
+                >
+                  🎁 Gift Card
+                </button>
+                <button
+                  type="button"
+                  className={paymentMethod === "crypto" ? "active-payment" : ""}
+                  onClick={() => handlePaymentMethodChange("crypto")}
+                >
+                  ₿ Crypto
+                </button>
               </div>
 
-              {/* Gift Card Section */}
-              {paymentMethod === 'giftcard' && (
-                <div className="giftcard-section">
+              {paymentMethod === "giftcard" && (
+                <div className="payment-section">
+                  <div className="info-alert">
+                    📌 Upload your gift card within 24 hours for verification.
+                  </div>
+                  
                   <div className="form-group">
                     <label>Gift Card Amount ($)</label>
                     <input
@@ -294,90 +264,78 @@ console.log("SERVER RESPONSE:", response.data);
                       onChange={(e) => setGiftCardAmount(e.target.value)}
                       min="10"
                       step="10"
+                      className="fifa-input"
                       required
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label>Upload Gift Card Image</label>
-                    <div className="file-upload-area">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleGiftCardImageUpload}
-                        id="giftcard-image"
-                        style={{ display: 'none' }}
-                      />
-                      <label htmlFor="giftcard-image" className="file-upload-label">
-                        {giftCardImage ? (
-                          <div className="upload-preview">
-                            <img src={giftCardImage} alt="Gift card" />
-                            <span>Click to change image</span>
-                          </div>
-                        ) : (
-                          <div className="upload-placeholder">
-                            <span>📤</span>
-                            <p>Click to upload gift card image</p>
-                            <small>JPG, PNG, GIF (max 5MB)</small>
-                          </div>
-                        )}
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="info-box">
-                    <p>📌 Your gift card will be verified within 24 hours. Tickets will be sent to your email once confirmed.</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Crypto Payment Section */}
-              {paymentMethod === 'crypto' && (
-                <div className="crypto-section">
-                  <div className="form-group">
-                    <label>Amount to Pay (USDT)</label>
+                  <div className="file-upload-area">
                     <input
-                      type="number"
-                      placeholder="Enter amount in USDT"
-                      value={cryptoAmount}
-                      onChange={(e) => setCryptoAmount(e.target.value)}
-                      min="1"
-                      step="1"
-                      required
+                      type="file"
+                      accept="image/*"
+                      onChange={handleGiftCardImageUpload}
+                      id="giftcard-image"
+                      style={{ display: 'none' }}
                     />
-                  </div>
-
-                  {showCryptoAddress && (
-                    <div className="crypto-address-box">
-                      <h4>Send payment to:</h4>
-                      <div className="address-display">
-                        <code>{adminCryptoAddress}</code>
-                        <button 
-                          type="button"
-                          className="copy-btn"
-                          onClick={() => {
-                            navigator.clipboard?.writeText(adminCryptoAddress);
-                            toast.success('Address copied to clipboard');
-                          }}
-                        >
-                          📋 Copy
-                        </button>
-                      </div>
-                      <p className="network-info">
-                        Network: <strong>{adminCryptoNetwork}</strong>
-                      </p>
-                      <p className="payment-instruction">
-                        Important: Send exactly the amount you entered above. 
-                        Include the transaction ID in the description when you submit.
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="info-box">
-                    <p>🔒 Your payment will be processed securely. The admin will verify the transaction and confirm your tickets.</p>
+                    <label htmlFor="giftcard-image" className="file-upload-label">
+                      {giftCardImage ? (
+                        <div className="upload-preview">
+                          <img src={giftCardImage} alt="Gift card" className="gift-preview" />
+                          <span>Click to change image</span>
+                        </div>
+                      ) : (
+                        <div className="upload-placeholder">
+                          <span>📤</span>
+                          <p>Click to upload gift card image</p>
+                          <small>JPG, PNG, GIF (max 5MB)</small>
+                        </div>
+                      )}
+                    </label>
                   </div>
                 </div>
               )}
+
+              {paymentMethod === "crypto" && (
+                <div className="payment-section">
+                  <div className="crypto-box">
+                    <h4>Send Payment To</h4>
+                    <code>{adminCryptoAddress}</code>
+                    <p>Network: <strong>{adminCryptoNetwork}</strong></p>
+                    <button 
+                      type="button"
+                      className="copy-btn"
+                      onClick={() => {
+                        navigator.clipboard?.writeText(adminCryptoAddress);
+                        toast.success('Address copied to clipboard');
+                      }}
+                    >
+                      📋 Copy Address
+                    </button>
+                  </div>
+
+                  <input
+                    type="number"
+                    placeholder="Amount Sent (USDT)"
+                    value={cryptoAmount}
+                    onChange={(e) => setCryptoAmount(e.target.value)}
+                    className="fifa-input"
+                    min="1"
+                    step="1"
+                    required
+                  />
+
+                  <div className="info-alert">
+                    🔒 Your transaction will appear in the admin dashboard for verification.
+                  </div>
+                </div>
+              )}
+
+              <div className="next-steps">
+                <h4>What happens next?</h4>
+                <p>1. Submit payment details</p>
+                <p>2. Payment verifier confirms</p>
+                <p>3. E-tickets sent to your email</p>
+              </div>
 
               <button 
                 type="submit" 

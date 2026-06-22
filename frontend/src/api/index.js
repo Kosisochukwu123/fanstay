@@ -82,5 +82,9 @@ export const adminAPI = {
 };
 
 export const ticketAPI = {
-  submitGiftCard: (data) => api.post("/payments/giftcard/submit-ticket", data),
+  submitGiftCard: (data) =>
+    api.post("/payments/giftcard/submit-ticket", data),
+
+  submitHospitality: (data) =>
+    api.post("/payments/hospitality", data),
 };

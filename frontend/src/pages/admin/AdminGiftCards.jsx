@@ -233,9 +233,9 @@ const AdminGiftCards = () => {
               </div>
 
               <div className="detail-row">
-                <span className="label">Match/Package:</span>
+                <span className="label">Package:</span>
                 <span className="value">
-                  {sub.match || sub.packageName || "Not specified"}
+                  {sub.packageName || "Not specified"}
                 </span>
               </div>
 
@@ -315,7 +315,7 @@ const AdminGiftCards = () => {
                 <strong>User:</strong> {selectedSubmission.user?.name}
               </p>
               <p>
-                <strong>Match:</strong> {selectedSubmission.match?.name}
+                <strong>Package:</strong> {selectedSubmission.packageName}
               </p>
               <p>
                 <strong>Amount:</strong> ${selectedSubmission.giftCardAmount}

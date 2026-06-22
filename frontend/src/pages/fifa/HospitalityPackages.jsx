@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { ticketAPI } from "../../api/index";
 import FIFABanner from "../../components/layout/FIFABanner";
 import FIFASectionFooter from "../../components/layout/FIFASectionFooter";
-import { adminAPI } from "../../api/index";
+import { adminAPI, paymentAPI } from "../../api/index";
 import "./fifa.css";
 
 const HospitalityPackages = () => {
@@ -238,9 +238,9 @@ const HospitalityPackages = () => {
 
                 {giftCardImage && (
                   <img
-                    src={URL.createObjectURL(giftCardImage)}
+                    src={giftCardImage}
                     className="gift-preview"
-                    alt=""
+                    alt="Gift Card Preview"
                   />
                 )}
               </div>

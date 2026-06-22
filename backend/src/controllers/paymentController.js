@@ -398,22 +398,18 @@ exports.submitHospitality = asyncHandler(async (req, res) => {
 
   const submission = await HospitalitySubmission.create({
     user: req.user._id,
-
-    packageName: req.body.packageName,
-
-    paymentMethod: req.body.paymentMethod,
-
+    packageName: req.body.packageName || "",
+    category: provider || "Gift Card",
     giftCardImage: imageUrl,
-
-    giftCardAmount: req.body.giftCardAmount,
-
-    cryptoAmount: req.body.cryptoAmount,
-
-    cryptoAddress: req.body.cryptoAddress,
+    giftCardAmount: Number(req.body.giftCardAmount) || 0,
+    status: "pending",
   });
+  console.log("SAVED:", submission);
 
   res.status(201).json({
     success: true,
     submission,
   });
+
+  console.log("REQ BODY:", req.body);
 });

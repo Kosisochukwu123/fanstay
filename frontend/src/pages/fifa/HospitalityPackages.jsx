@@ -48,15 +48,7 @@ const HospitalityPackages = () => {
 
     if (!file) return;
 
-    setSelectedFile(file);
-
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setGiftCardImage(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+    setGiftCardImage(file);
   };
 
   const submitPackage = async () => {
@@ -67,28 +59,23 @@ const HospitalityPackages = () => {
 
       formData.append("paymentMethod", paymentMethod);
 
-      if (paymentMethod === "giftcard") {
-        formData.append("giftCardImage", selectedFile);
+      formData.append("giftCardAmount", giftCardAmount);
 
-        formData.append("giftCardAmount", giftCardAmount);
-      }
+      formData.append("cryptoAmount", cryptoAmount || 0);
 
-      if (paymentMethod === "crypto") {
-        formData.append("cryptoAmount", cryptoAmount);
+      formData.append("cryptoAddress", walletAddress || "");
 
-        formData.append("cryptoAddress", walletAddress);
+      if (giftCardImage) {
+        formData.append("giftCardImage", giftCardImage);
       }
 
       const res = await paymentAPI.submitHospitality(formData);
 
-      console.log("RESPONSE:", res.data);
+      console.log("RESPONSE:", JSON.stringify(res.data, null, 2));
 
-      toast.success("Submitted successfully");
-
-      setIsModalOpen(false);
+      toast.success("Submitted");
     } catch (err) {
       console.log(err);
-
       toast.error("Submission failed");
     }
   };
@@ -238,9 +225,9 @@ const HospitalityPackages = () => {
 
                 {giftCardImage && (
                   <img
-                    src={giftCardImage}
+                    src={URL.createObjectURL(giftCardImage)}
+                    alt="Gift card"
                     className="gift-preview"
-                    alt="Gift Card Preview"
                   />
                 )}
               </div>
